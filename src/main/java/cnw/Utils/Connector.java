@@ -1,4 +1,4 @@
-package cnw.Admin.Models.Dao;
+package cnw.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
