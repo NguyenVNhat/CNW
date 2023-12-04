@@ -1,5 +1,7 @@
 package cnw.Admin.Models.Dao;
 
+import cnw.Utils.Connector;
+
 import java.sql.*;
 
 public class AdminDao {
