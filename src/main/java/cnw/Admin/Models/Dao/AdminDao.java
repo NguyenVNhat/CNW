@@ -9,7 +9,7 @@ public class AdminDao {
     public Boolean isExitAdmin(String adminname,String password) throws SQLException, ClassNotFoundException {
         Connection connection = connector.connectDB();
         Statement sttm = connection.createStatement();
-        String query = "select * from ADMIN where Adminname = '"+adminname+"' and Password = '"+password+"'";
+        String query = "select * from ADMIN where Username = '"+adminname+"' and Password = '"+password+"'";
         ResultSet resultSet = sttm.executeQuery(query);
         if(resultSet.next())
         {

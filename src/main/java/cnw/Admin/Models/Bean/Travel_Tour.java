@@ -3,8 +3,9 @@ package cnw.Admin.Models.Bean;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Tour {
-    private Integer Id;
+public class Travel_Tour {
+
+    private Integer IdTour;
     private String Instructor;
     private Integer Price;
     private Integer ToTalTime;
@@ -12,6 +13,24 @@ public class Tour {
     private Boolean Status;
 
     private ArrayList<String > listAddress;
+    private ArrayList<Traveler > listTraveler;
+
+    public Travel_Tour(Integer idTour, String instructor, Integer price, Integer toTalTime, Date timeStart, Boolean status) {
+        IdTour = idTour;
+        Instructor = instructor;
+        Price = price;
+        ToTalTime = toTalTime;
+        TimeStart = timeStart;
+        Status = status;
+    }
+
+    public Integer getIdTour() {
+        return IdTour;
+    }
+
+    public void setIdTour(Integer idTour) {
+        IdTour = idTour;
+    }
 
     public String getInstructor() {
         return Instructor;
@@ -19,42 +38,6 @@ public class Tour {
 
     public void setInstructor(String instructor) {
         Instructor = instructor;
-    }
-
-    public ArrayList<String> getListAddress() {
-        return listAddress;
-    }
-
-    public void setListAddress(ArrayList<String> listAddress) {
-        this.listAddress = listAddress;
-    }
-
-    public Tour() {
-    }
-
-    public Tour(Integer id, String idInstructor, Integer price, Integer toTalTime, Date timeStart,  Boolean status) {
-        Id = id;
-        Instructor = idInstructor;
-        Price = price;
-        ToTalTime = toTalTime;
-        TimeStart = timeStart;
-        Status = status;
-    }
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
-    }
-
-    public String getIdInstructor() {
-        return Instructor;
-    }
-
-    public void setIdInstructor(String idInstructor) {
-        Instructor = idInstructor;
     }
 
     public Integer getPrice() {
@@ -81,12 +64,27 @@ public class Tour {
         TimeStart = timeStart;
     }
 
-
     public Boolean getStatus() {
         return Status;
     }
 
     public void setStatus(Boolean status) {
         Status = status;
+    }
+
+    public ArrayList<String> getListAddress() {
+        return listAddress;
+    }
+
+    public void setListAddress(ArrayList<String> listAddress) {
+        this.listAddress = listAddress;
+    }
+
+    public ArrayList<Traveler> getListTraveler() {
+        return listTraveler;
+    }
+
+    public void setListTraveler(ArrayList<Traveler> listTraveler) {
+        this.listTraveler = listTraveler;
     }
 }

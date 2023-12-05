@@ -3,6 +3,7 @@ package cnw.Admin.Models.Dao;
 import cnw.Admin.Models.Bean.Tour;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,28 +19,127 @@ public class TourDao {
     public Tour getDetailTour(Integer Id) throws SQLException, ClassNotFoundException {
         Connection connection = connectDB();
         Statement statement = connection.createStatement();
-        String query = "select * from TOUR where Id = '"+Id+"'";
+        String query = "select tour.Id , instructor.Name,tour.Price,tour.TotalTime,tour.TimeStart,tour.Status" +
+                " from TOUR " +
+                "join Instructor ON Tour.IdInstructor = Instructor.Id\n" +
+                " WHERE tour.Id = '"+Id+"'";
         ResultSet resultSet = statement.executeQuery(query);
         if (resultSet.next())
         {
-             Integer IdTraveler = resultSet.getInt("IdTraveler");
-             Integer IdInstructor = resultSet.getInt("IdTraveler");
-             Integer IdAddress =  resultSet.getInt("IdAddress");
+             Integer ID = resultSet.getInt("Id");
+             String Instructor = resultSet.getString("Name");
              Integer Price =  resultSet.getInt("Price");
              Integer ToTalTime = resultSet.getInt("ToTalTime");
              Date TimeStart = resultSet.getDate("TimeStart");
-             Date TimeEnd = resultSet.getDate("TimeEnd");
              Boolean Status = resultSet.getBoolean("Status");
-             return new Tour(Id, IdTraveler,IdInstructor,IdAddress,Price,ToTalTime,TimeStart,TimeEnd,Status);
+             return new Tour(ID,Instructor,Price,ToTalTime,TimeStart,Status);
         }
-        return new Tour(null,null,null,null,null,null,null,null,null);
+        return new Tour(null,null,null,null,null,null);
     }
     public ArrayList<Tour> getAllTour() throws SQLException, ClassNotFoundException {
         Connection connection = connectDB();
         Statement statement = connection.createStatement();
-        String query = "select * from TOUR ";
+        String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
+                "FROM TOUR " +
+                "JOIN Instructor ON Tour.IdInstructor = Instructor.Id";
+
         ResultSet resultSet = statement.executeQuery(query);
-        return null;
+        ArrayList<Tour> tours = new ArrayList<>();
+
+        while (resultSet.next()) {
+            Integer ID = resultSet.getInt("Id");
+            String Instructor = resultSet.getString("Name");
+
+
+            Integer Price = resultSet.getInt("Price");
+            Integer TotalTime = resultSet.getInt("TotalTime");
+            Date TimeStart = resultSet.getDate("TimeStart");
+            Boolean Status = resultSet.getBoolean("Status");
+
+            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+            tours.add(tour);
+
+        }
+
+        return tours;
+    }
+    public ArrayList<String > getListAddress(Integer IdTour) throws SQLException, ClassNotFoundException {
+        Connection connection = connectDB();
+        Statement statement = connection.createStatement();
+        String query = "SELECT address.AddressName " +
+                "FROM address " +
+                "JOIN tour_address ON tour_address.IdAddress = address.Id \n" +
+                "WHERE tour_address.IdTour = '"+IdTour+"'";
+
+
+        ResultSet resultSet = statement.executeQuery(query);
+        ArrayList<String> address = new ArrayList<>();
+
+        while (resultSet.next()) {
+            String name = resultSet.getString("AddressName");
+            address.add(name);
+        }
+        return address;
+    }
+
+
+    public Boolean addTour(Tour tour) throws SQLException, ClassNotFoundException {
+        Connection connection = connectDB();
+        Statement statement = connection.createStatement();
+        Date defaultDateString = tour.getTimeStart();
+
+        SimpleDateFormat defaultDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = defaultDateFormat.format(defaultDateString);
+        Integer status = 0;
+        if(tour.getStatus())
+        {
+            status = 1;
+        }
+        String query = "INSERT INTO `tour`(`Id`,  `IdInstructor`, `Price`, `TotalTime`, `TimeStart`, `Status`) " +
+                "VALUES ('"+tour.getId()+"','"+tour.getIdInstructor()+"'," +
+                "'"+tour.getPrice()+"','"+tour.getToTalTime()+"','"+formattedDate+"'," +
+                "'"+status+"') ";
+        Integer result = statement.executeUpdate(query);
+        if (result >0)
+        {
+            return  true;
+        }
+        else return  false;
+    }
+    public Boolean updateTour(Tour tour) throws SQLException, ClassNotFoundException {
+        Connection connection = connectDB();
+
+        Date defaultDateString = tour.getTimeStart();
+
+        SimpleDateFormat defaultDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = defaultDateFormat.format(defaultDateString);
+        Integer status = 0;
+        if(tour.getStatus())
+        {
+            status = 1;
+        }
+
+        Statement statement = connection.createStatement();
+        String query = "UPDATE `tour` SET `IdInstructor`='"+tour.getIdInstructor()+"'," +
+                "`Price`='"+tour.getPrice()+"',`TotalTime`='"+tour.getToTalTime()+"',`TimeStart`='"+formattedDate+"'," +
+                "`Status`='"+status+"' WHERE `Id`='"+tour.getId()+"'";
+        Integer result = statement.executeUpdate(query);
+        if (result >0)
+        {
+            return  true;
+        }
+        else return  false;
+    }
+    public Boolean deleteTour(Integer Id) throws SQLException, ClassNotFoundException {
+        Connection connection = connectDB();
+        Statement statement = connection.createStatement();
+        String query = "DELETE FROM `tour` WHERE Id = '"+Id+"'";
+        Integer result = statement.executeUpdate(query);
+        if (result >0)
+        {
+            return  true;
+        }
+        else return  false;
     }
 
 }
