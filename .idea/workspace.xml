@@ -9,52 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d6b8c53-7633-48bd-b804-94eab7b0d9a0" name="Changes" comment="03/12/2023">
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/TourController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/Travel_TourController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Instructor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Travel_Tour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Traveler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/InstructorBo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/TourBo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/Travel_TourBo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/IntructorDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/Travel_TourDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/ListTour.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/asset/js/AdminHome.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/detailTour.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/formAddTour.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/formDeleteTour.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/formUpdateTour.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="1d6b8c53-7633-48bd-b804-94eab7b0d9a0" name="Changes" comment="05/12/2023">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Tour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/TourBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/TourBo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/TourDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/TourDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/AdminHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/AdminHome.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/AdminLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/AdminLogin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/css/AdminHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/asset/css/AdminHome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_animated.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_bordered-pulled.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_core.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_fixed-width.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_icons.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_list.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_mixins.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_rotated-flipped.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_screen-reader.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_shims.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_sizing.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_stacked.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/_variables.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/brands.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/fontawesome.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/regular.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/solid.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/less/v4-shims.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/ListTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/ListTour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/formUpdateTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/formUpdateTour.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +203,7 @@
       <workItem from="1701682377694" duration="2651000" />
       <workItem from="1701697955689" duration="7626000" />
       <workItem from="1701705785967" duration="11975000" />
-      <workItem from="1701761074345" duration="4352000" />
+      <workItem from="1701761074345" duration="5447000" />
     </task>
     <task id="LOCAL-00001" summary="Setting pom.xml">
       <option name="closed" value="true" />
@@ -276,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701598012537</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="05/12/2023">
+      <option name="closed" value="true" />
+      <created>1701765671542</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701765671544</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +255,7 @@
     <MESSAGE value="Setting pom.xml" />
     <MESSAGE value="AdminLogin" />
     <MESSAGE value="03/12/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="03/12/2023" />
+    <MESSAGE value="05/12/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="05/12/2023" />
   </component>
 </project>

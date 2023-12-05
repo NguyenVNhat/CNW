@@ -39,6 +39,26 @@ public class TourController extends HttpServlet
                 throw new RuntimeException(e);
             }
         }
+        else if(action.equals("getUpTour"))
+        {
+            try {
+                getUpTour(req,resp);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else if(action.equals("getDownTour"))
+        {
+            try {
+                getDownTour(req,resp);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
         else if (action.equals("getdetailTour")){
             try {
                 getDetailTour(req, resp);
@@ -195,6 +215,30 @@ public class TourController extends HttpServlet
         tour.setListAddress(listAddress);
         req.setAttribute("detailTour",tour);
         String destination = "/Admin/detailTour.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+        rd.forward(req,resp);
+    }
+    public void getUpTour(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        ArrayList<Tour> tours = tourBo.getUpTour();
+        for (Tour tour: tours
+        ) {
+            ArrayList<String> listAddress = tourBo.getListAddress(tour.getId());
+            tour.setListAddress(listAddress);
+        }
+        req.setAttribute("tours",tours);
+        String destination = "/Admin/ListTour.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+        rd.forward(req,resp);
+    }
+    public void getDownTour(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        ArrayList<Tour> tours = tourBo.getDownTour();
+        for (Tour tour: tours
+        ) {
+            ArrayList<String> listAddress = tourBo.getListAddress(tour.getId());
+            tour.setListAddress(listAddress);
+        }
+        req.setAttribute("tours",tours);
+        String destination = "/Admin/ListTour.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
         rd.forward(req,resp);
     }

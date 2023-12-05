@@ -63,6 +63,64 @@ public class TourDao {
 
         return tours;
     }
+    public ArrayList<Tour> getUpTour() throws SQLException, ClassNotFoundException {
+        Connection connection = connectDB();
+        Statement statement = connection.createStatement();
+        String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
+                "FROM TOUR " +
+                "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
+                "WHERE tour.TimeStart > NOW()";
+
+
+        ResultSet resultSet = statement.executeQuery(query);
+        ArrayList<Tour> tours = new ArrayList<>();
+
+        while (resultSet.next()) {
+            Integer ID = resultSet.getInt("Id");
+            String Instructor = resultSet.getString("Name");
+
+
+            Integer Price = resultSet.getInt("Price");
+            Integer TotalTime = resultSet.getInt("TotalTime");
+            Date TimeStart = resultSet.getDate("TimeStart");
+            Boolean Status = resultSet.getBoolean("Status");
+
+            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+            tours.add(tour);
+
+        }
+
+        return tours;
+    }
+    public ArrayList<Tour> getDownTour() throws SQLException, ClassNotFoundException {
+        Connection connection = connectDB();
+        Statement statement = connection.createStatement();
+        String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
+                "FROM TOUR " +
+                "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
+                "WHERE DATE_ADD(tour.TimeStart, INTERVAL tour.TotalTime MINUTE) < NOW()";
+
+        ResultSet resultSet = statement.executeQuery(query);
+        ArrayList<Tour> tours = new ArrayList<>();
+
+        while (resultSet.next()) {
+            Integer ID = resultSet.getInt("Id");
+            String Instructor = resultSet.getString("Name");
+
+
+            Integer Price = resultSet.getInt("Price");
+            Integer TotalTime = resultSet.getInt("TotalTime");
+            Date TimeStart = resultSet.getDate("TimeStart");
+            Boolean Status = resultSet.getBoolean("Status");
+
+            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+            tours.add(tour);
+
+        }
+
+        return tours;
+    }
+
     public ArrayList<String > getListAddress(Integer IdTour) throws SQLException, ClassNotFoundException {
         Connection connection = connectDB();
         Statement statement = connection.createStatement();

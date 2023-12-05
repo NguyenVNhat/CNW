@@ -16,7 +16,11 @@
 <%
     Tour tour = (Tour) request.getAttribute("detailTour");
     ArrayList<Instructor> instructors = (ArrayList<Instructor>) request.getAttribute("detailIns");
-
+    String error = (String) request.getAttribute("error");
+    if(error == null)
+    {
+        error = "";
+    }
 %>
 
     <form action="../tour?action=updateTour" method="post">
@@ -34,6 +38,7 @@
         <input type="text" name="TotalTime"  value="<%=tour.getToTalTime()%>"/>
         <input type="text" name="TimeStart"  value="<%=tour.getTimeStart()%>"/>
         <input type="text" name="Status"  value="<%=tour.getStatus()%>"/>
+        <p><%=error %></p>
         <button type="submit">OK</button>
     </form>
 </body>

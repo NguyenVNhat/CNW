@@ -14,6 +14,12 @@ public class TourBo {
     public ArrayList<Tour> getAllTour() throws SQLException, ClassNotFoundException {
         return tourDao.getAllTour();
     }
+    public ArrayList<Tour> getUpTour() throws SQLException, ClassNotFoundException {
+        return tourDao.getUpTour();
+    }
+    public ArrayList<Tour> getDownTour() throws SQLException, ClassNotFoundException {
+        return tourDao.getDownTour();
+    }
     public ArrayList<String> getListAddress(Integer IdTour) throws SQLException, ClassNotFoundException {
         return tourDao.getListAddress(IdTour);
     }
