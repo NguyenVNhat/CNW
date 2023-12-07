@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.form-login{
+    position: absolute;
+    left: 15%;
+    width: 70%;
+    height: 500px;
+    top: 10%;
+    border-radius: 50px;
+    box-shadow: 0 0 20px #000;
+    display: flex;
+
+}
+.blur-background{
+    width: 100%;
+    height: 735px;
+    background:url('../image/ImageAdminLogin.jpeg');
+    background-size: 100%;
+    filter: blur(10px);
+}
+.image-welcome{
+    width: 70%;
+    height: 100%;
+    background:url('../image/ImageAdminLogin.jpeg');
+    background-size: 100%;
+    border-radius: 50px 0 0 50px;
+    position: relative;
+}
+.accounce{
+    position: absolute;
+    width: 30%;
+    height: 100px;
+    top:5%;
+    left: 10%;
+}
+.div-form{
+    width: 30%;
+    height: 100%;
+    border-radius: 0 50px 50px 0;
+    background-color: #fff;
+    position: relative;
+}
+.circle{
+    background:url('../image/hinhtron.png');
+    background-size: 100%;
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+.circle-1{
+    right: -100px;
+    top:-100px;
+}
+.circle-2{
+    left: -100px;
+    top:100px;
+}
+.circle-3{
+    bottom:-100px;
+}
+.main-form{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+}
+.div-title{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+}
+.title{
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    font-family: 'Nova Square', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+}
+.form{
+    position: absolute;
+    width: 100%;
+    height: 70%;
+}
+.form-login-main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.Adminname,.Password{
+    margin-left: 5%;
+    width: 90%;
+    height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+    margin-top: 20px;
+}
+.Adminname::placeholder,.Password::placeholder{
+    color: #dedede;
+}
+.Adminname:focus,.Password:focus{
+    outline: none;
+    box-shadow: 0 0 15px rgb(2, 174, 247);
+}
+.forgetpassword{
+    text-decoration: none;
+    color: #000;
+    margin-left: 50%;
+}
+.forgetpassword:hover{
+    color: rgb(2, 174, 247);
+}
+.button-login{
+    margin-top: 20px;
+    width: 50%;
+    margin-left: 25%;
+    height: 40px;
+    border: none;
+    background-image: linear-gradient(to bottom, rgb(2, 174, 247) , rgb(0, 60, 255));
+    border-radius: 10px;
+}
+.button-login:hover{
+    background-image: linear-gradient(to bottom, rgb(63, 143, 234) , rgb(2, 38, 153));
+}

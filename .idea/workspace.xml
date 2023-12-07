@@ -9,7 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d6b8c53-7633-48bd-b804-94eab7b0d9a0" name="Changes" comment="AdminLogin" />
+    <list default="true" id="1d6b8c53-7633-48bd-b804-94eab7b0d9a0" name="Changes" comment="05/12/2023">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/TourBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/TourBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/TourDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/TourDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/ListTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/ListTour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/formUpdateTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/formUpdateTour.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,13 +25,29 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;NguyenVNhat&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="57304928-d5a7-42b3-bdef-8b9124ea7eda" />
+        <option name="url" value="https://github.com/NguyenVNhat/CNW.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -45,24 +68,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Acer/Downloads/mysql-connector-java-5.1.48.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/crud-tour&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/PBL4/ChatApplication-Copy&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Acer\Desktop\DocumentUni\CNW\BTN_CNW\src\main\java\cnw\Admin\Models\Bean" />
@@ -167,7 +192,18 @@
       <updated>1701485584991</updated>
       <workItem from="1701485587612" duration="2050000" />
       <workItem from="1701512576104" duration="19000" />
-      <workItem from="1701528543506" duration="7440000" />
+      <workItem from="1701528543506" duration="7565000" />
+      <workItem from="1701540780085" duration="637000" />
+      <workItem from="1701595016370" duration="5978000" />
+      <workItem from="1701614722412" duration="3854000" />
+      <workItem from="1701659149660" duration="150000" />
+      <workItem from="1701659452322" duration="61000" />
+      <workItem from="1701659634111" duration="145000" />
+      <workItem from="1701678540401" duration="3815000" />
+      <workItem from="1701682377694" duration="2651000" />
+      <workItem from="1701697955689" duration="7626000" />
+      <workItem from="1701705785967" duration="11975000" />
+      <workItem from="1701761074345" duration="5447000" />
     </task>
     <task id="LOCAL-00001" summary="Setting pom.xml">
       <option name="closed" value="true" />
@@ -185,7 +221,31 @@
       <option name="project" value="LOCAL" />
       <updated>1701539982304</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="AdminLogin">
+      <option name="closed" value="true" />
+      <created>1701540174995</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701540174995</updated>
+    </task>
+    <task id="LOCAL-00004" summary="03/12/2023">
+      <option name="closed" value="true" />
+      <created>1701598012537</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701598012537</updated>
+    </task>
+    <task id="LOCAL-00005" summary="05/12/2023">
+      <option name="closed" value="true" />
+      <created>1701765671542</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701765671544</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +254,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Setting pom.xml" />
     <MESSAGE value="AdminLogin" />
-    <option name="LAST_COMMIT_MESSAGE" value="AdminLogin" />
+    <MESSAGE value="03/12/2023" />
+    <MESSAGE value="05/12/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="05/12/2023" />
   </component>
 </project>

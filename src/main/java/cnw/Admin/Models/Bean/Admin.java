@@ -2,20 +2,20 @@ package cnw.Admin.Models.Bean;
 
 public class Admin {
     private Integer Id;
-    private String Adminname ;
+    private String Username ;
     private String Password;
 
     public Admin() {
     }
 
-    public Admin(String adminname, String password) {
-        Adminname = adminname;
+    public Admin(String username, String password) {
+        Username = username;
         Password = password;
     }
 
     public Admin(Integer id, String adminname, String password) {
         Id = id;
-        Adminname = adminname;
+        Username = adminname;
         Password = password;
     }
 
@@ -28,11 +28,11 @@ public class Admin {
     }
 
     public String getAdminname() {
-        return Adminname;
+        return Username;
     }
 
     public void setAdminname(String adminname) {
-        Adminname = adminname;
+        Username = adminname;
     }
 
     public String getPassword() {
