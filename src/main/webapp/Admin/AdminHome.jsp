@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/Admin/asset/css/AdminHome.css">
+    <link rel="stylesheet" href="/Admin/asset/css/HomePage.css">
     <script src="/Admin/asset/js/AdminHome.js"></script>
     <link rel="stylesheet" href="/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/css/all.css">
 </head>
@@ -23,7 +23,7 @@
                     <div class="item-view">
                         <div class="name-item">
                             <i class="fa-solid fa-house fa-xl"></i>
-                            <a href="#">Dashboard</a>
+                            <a href="#" style="margin-left: 10px">Dashboard</a>
                         </div>
 
                         <i class="fa-solid fa-caret-right fa-xl"></i>
@@ -38,8 +38,8 @@
                 <div class="parent-item">
                     <div class="item-view">
                         <div class="name-item">
-                            <i class="fa-solid fa-house fa-xl"></i>
-                            <a href="../traveltour?action=getallTravelTour" target="main-content">Danh sách tour có lịch</a>
+                            <i class="fa-solid fa-calendar"></i>
+                            <a href="../traveltour?action=getallTravelTour" target="main-content" style="margin-left: 10px">Lịch tour</a>
                         </div>
 
                         <i class="fa-solid fa-caret-right fa-xl"></i>
@@ -54,15 +54,34 @@
                 <div class="parent-item">
                     <div class="item-view">
                         <div class="name-item">
-                            <i class="fa-solid fa-house fa-xl"></i>
-                            <a href="../tour?action=getallTour" target="main-content">Danh sách tour</a>
+                            <i class="fa-regular fa-rectangle-list"></i>
+                            <a href="../tour?action=getallTour" target="main-content" style="margin-left: 10px">Danh sách tour</a>
                         </div>
 
                         <i class="fa-solid fa-caret-right fa-xl"></i>
                     </div>
                 </div>
                 <div class="sub-item">
-
+                    <div class="sub-function">
+                        <i class="fa-solid fa-folder-plus" style="margin-left: 20px ;"></i>
+                        <a href="../tour?action=ToAddTour" target="main-content" style="margin-left: 10px ;color:#fff">Tour</a>
+                    </div>
+                    <div class="sub-function" >
+                        <i class="fa-solid fa-play" style="margin-left: 20px ;"></i>
+                        <a style="margin-left: 10px ;color:#fff" href="../tour?action=getallTour" target="main-content">Tất cả</a>
+                    </div>
+                    <div class="sub-function">
+                        <i class="fa-solid fa-play" style="margin-left: 20px ;"></i>
+                        <a style="margin-left: 10px ;color:#fff" href="../tour?action=getUpTour" target="main-content">Tour sắp tới</a>
+                    </div>
+                    <div class="sub-function">
+                        <i class="fa-solid fa-play" style="margin-left: 20px ;"></i>
+                        <a style="margin-left: 10px ;color:#fff" href="../tour?action=getDownTour" target="main-content">Tour đã hoàn thành</a>
+                    </div>
+                    <div class="sub-function">
+                        <i class="fa-solid fa-play" style="margin-left: 20px ;"></i>
+                        <a style="margin-left: 10px ;color:#fff" href="../tour?action=getCurrentTour" target="main-content">Tour hiện có</a>
+                    </div>
                 </div>
             </div>
             <div class="divitem">
@@ -71,7 +90,7 @@
                     <div class="item-view">
                         <div class="name-item">
                             <i class="fa-solid fa-house fa-xl"></i>
-                            <p>Dashboard</p>
+                            <a href="#" style="margin-left: 10px">Dashboard</a>
                         </div>
 
                         <i class="fa-solid fa-caret-right fa-xl"></i>
@@ -91,7 +110,7 @@
                     <i class="fa-solid fa-bars fa-2xl"></i>
                 </div>
                 <div class="title-content">
-                    <p>Dashboard</p>
+                    <a href="#" style="margin-left: 10px">Dashboard</a>
                 </div>
             </div>
 

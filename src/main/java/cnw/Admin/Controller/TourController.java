@@ -1,9 +1,12 @@
 package cnw.Admin.Controller;
 
+import cnw.Admin.Models.Bean.Address;
 import cnw.Admin.Models.Bean.Instructor;
 import cnw.Admin.Models.Bean.Tour;
+import cnw.Admin.Models.Bo.AddressBo;
 import cnw.Admin.Models.Bo.InstructorBo;
 import cnw.Admin.Models.Bo.TourBo;
+import cnw.Admin.Models.Bo.Tour_AddressBo;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -53,6 +56,16 @@ public class TourController extends HttpServlet
         {
             try {
                 getDownTour(req,resp);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else if(action.equals("getCurrentTour"))
+        {
+            try {
+                getCurrentTour(req,resp);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
@@ -112,16 +125,19 @@ public class TourController extends HttpServlet
         }
         else if (action.equals("ToAddTour")){
             InstructorBo instructorBo = new InstructorBo();
+            AddressBo addressBo = new AddressBo();
             ArrayList<Instructor> instructors  = null;
+            ArrayList<Address> addresses  = null;
             try {
                 instructors = instructorBo.getAllIntructor();
+                addresses = addressBo.getAllAddress();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             req.setAttribute("detailIns",instructors);
-
+            req.setAttribute("detailAddress",addresses);
             String destination = "/Admin/formAddTour.jsp";
             RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
             rd.forward(req,resp);
@@ -136,7 +152,54 @@ public class TourController extends HttpServlet
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+        } else if (action.equals("findTour")) {
+            try {
+                findTour(req, resp);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
+        else if (action.equals("findTourDay")) {
+            try {
+                findTourDay(req, resp);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    public void findTourDay(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        String textsearch = req.getParameter("textsearch");
+        String pageId = req.getParameter("pageId");
+        ArrayList<Tour> tours = tourBo.findTourDay(textsearch);
+        for (Tour tour: tours
+        ) {
+            ArrayList<String> listAddress = tourBo.getListAddress(tour.getId());
+            tour.setListAddress(listAddress);
+        }
+        req.setAttribute("pageId", pageId);
+        req.setAttribute("tours",tours);
+        String destination = "/Admin/ListTour.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+        rd.forward(req,resp);
+    }
+    public void findTour(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        String textsearch = req.getParameter("textsearch");
+        String pageId = req.getParameter("typeSearch");
+        ArrayList<Tour> tours = tourBo.findTour(textsearch,pageId);
+        for (Tour tour: tours
+        ) {
+            ArrayList<String> listAddress = tourBo.getListAddress(tour.getId());
+            tour.setListAddress(listAddress);
+        }
+        req.setAttribute("pageId", pageId);
+        req.setAttribute("tours",tours);
+        String destination = "/Admin/ListTour.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+        rd.forward(req,resp);
     }
     public void updateTour(HttpServletRequest req, HttpServletResponse resp) throws ParseException, SQLException, ClassNotFoundException, ServletException, IOException {
          Integer Id = Integer.parseInt(req.getParameter("Id"));
@@ -168,21 +231,28 @@ public class TourController extends HttpServlet
 
     }
     public void addTour(HttpServletRequest req, HttpServletResponse resp) throws ParseException, SQLException, ClassNotFoundException, ServletException, IOException {
-        Integer Id = Integer.parseInt(req.getParameter("Id"));
-        String Instructor =req.getParameter("Intructor");
-        Integer Price= Integer.parseInt(req.getParameter("Price"));
-        Integer ToTalTime =Integer.parseInt(req.getParameter("TotalTime"));
+        Integer Id =Integer.parseInt(req.getParameter("Id"));
+        Integer Price = Integer.parseInt(req.getParameter("Price"));
+        Integer TotalTime = Integer.parseInt(req.getParameter("TotalTime"));
 
         String TimeStart = req.getParameter("TimeStart");
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date timeStartDate = dateFormat.parse(TimeStart);
+        String[] selectedAddresses = req.getParameterValues("IdAddress");
+        Integer IdInstructor =  Integer.parseInt(req.getParameter("IdInstructor"));
+        System.out.println("--"+IdInstructor);
 
-        Boolean Status = Boolean.parseBoolean(req.getParameter("Status"));
-        Tour tour = new Tour(Id,Instructor,Price,ToTalTime,timeStartDate,Status);
+        Tour_AddressBo addressBo = new Tour_AddressBo();
+
+        Tour tour = new Tour(Id,IdInstructor,Price,TotalTime,timeStartDate,true);
         Boolean res = tourBo.addTour(tour);
         if(res)
         {
+            for (String address: selectedAddresses
+            ) {
+                Integer IdAddress = Integer.valueOf(address);
+                addressBo.Add(Id,IdAddress);
+            }
             getAllTour(req, resp);
         }
         else{
@@ -202,6 +272,7 @@ public class TourController extends HttpServlet
             ArrayList<String> listAddress = tourBo.getListAddress(tour.getId());
             tour.setListAddress(listAddress);
         }
+
         req.setAttribute("pageId", "1");
         req.setAttribute("tours",tours);
         String destination = "/Admin/ListTour.jsp";
@@ -225,6 +296,7 @@ public class TourController extends HttpServlet
             ArrayList<String> listAddress = tourBo.getListAddress(tour.getId());
             tour.setListAddress(listAddress);
         }
+        req.setAttribute("pageId", "2");
         req.setAttribute("tours",tours);
         String destination = "/Admin/ListTour.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
@@ -237,6 +309,20 @@ public class TourController extends HttpServlet
             ArrayList<String> listAddress = tourBo.getListAddress(tour.getId());
             tour.setListAddress(listAddress);
         }
+        req.setAttribute("pageId", "3");
+        req.setAttribute("tours",tours);
+        String destination = "/Admin/ListTour.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+        rd.forward(req,resp);
+    }
+    public void getCurrentTour(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        ArrayList<Tour> tours = tourBo.getCurentTour();
+        for (Tour tour: tours
+        ) {
+            ArrayList<String> listAddress = tourBo.getListAddress(tour.getId());
+            tour.setListAddress(listAddress);
+        }
+        req.setAttribute("pageId", "4");
         req.setAttribute("tours",tours);
         String destination = "/Admin/ListTour.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);

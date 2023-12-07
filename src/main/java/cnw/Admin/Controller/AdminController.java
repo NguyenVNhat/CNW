@@ -13,13 +13,13 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/amdin-login")
+@WebServlet("/admin-login")
 public class AdminController extends HttpServlet {
     private AdminBo adminBo = new AdminBo();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        doPost(req, resp);
     }
 
     @Override

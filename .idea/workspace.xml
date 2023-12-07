@@ -9,13 +9,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d6b8c53-7633-48bd-b804-94eab7b0d9a0" name="Changes" comment="05/12/2023">
+    <list default="true" id="1d6b8c53-7633-48bd-b804-94eab7b0d9a0" name="Changes" comment="crud tour and ui">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Tour_Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/AddressBo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/Tour_AddressBo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/AddressDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/Tour_AddressDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/asset/css/AddTour.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/asset/css/HomePage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin/asset/css/formAddTour.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Controller/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bean/Tour.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/TourBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/TourBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/IntructorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/IntructorDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/TourDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/TourDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/AdminHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/AdminHome.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/AdminLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/AdminLogin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/ListTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/ListTour.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/formUpdateTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/formUpdateTour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/ListTravel_Tour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/ListTravel_Tour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/css/AdminHome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/css/ListTravel_Tour.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/asset/css/ListTravel_Tour.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/js/AdminHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/asset/js/AdminHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/asset/js/ListTravel_Tour.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/asset/js/ListTravel_Tour.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/detailTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/detailTour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Admin/formAddTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin/formAddTour.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +46,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="CSS File" />
         <option value="Class" />
       </list>
     </option>
@@ -204,6 +225,18 @@
       <workItem from="1701697955689" duration="7626000" />
       <workItem from="1701705785967" duration="11975000" />
       <workItem from="1701761074345" duration="5447000" />
+      <workItem from="1701772213764" duration="408000" />
+      <workItem from="1701773159538" duration="1425000" />
+      <workItem from="1701777540081" duration="1582000" />
+      <workItem from="1701783240287" duration="7666000" />
+      <workItem from="1701827670492" duration="247000" />
+      <workItem from="1701829552708" duration="87000" />
+      <workItem from="1701832733181" duration="1835000" />
+      <workItem from="1701845903179" duration="4362000" />
+      <workItem from="1701855581400" duration="951000" />
+      <workItem from="1701872116658" duration="8572000" />
+      <workItem from="1701884965802" duration="629000" />
+      <workItem from="1701918661338" duration="813000" />
     </task>
     <task id="LOCAL-00001" summary="Setting pom.xml">
       <option name="closed" value="true" />
@@ -256,6 +289,7 @@
     <MESSAGE value="AdminLogin" />
     <MESSAGE value="03/12/2023" />
     <MESSAGE value="05/12/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="05/12/2023" />
+    <MESSAGE value="crud tour and ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud tour and ui" />
   </component>
 </project>

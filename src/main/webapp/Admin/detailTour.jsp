@@ -16,7 +16,7 @@
 %>
 <p><%= tour.getId() %></p>
 <p><%= tour.getPrice() %></p>
-<p><%= tour.getIdInstructor() %></p>
+<p><%= tour.getInstructor() %></p>
 <div>
     <select>
         <%

@@ -32,7 +32,7 @@
                 <div class="title">LOGIN</div>
             </div>
             <div class="form">
-                <form class="form-login-main" name="form_1" action="../amdin-login?action=adminlogin" method="post">
+                <form class="form-login-main" name="form_1" action="../admin-login?action=adminlogin" method="post">
                     <input type="text" id="Adminname" name="Adminname" class="Adminname" placeholder="Admin name" />
                     <input type="text" id="Password" name="Password" class="Password" placeholder="Password" />
                     <a class="forgetpassword" href="#">Forget Password ?</a>

@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Tour {
     private Integer Id;
+    private Integer IdIntructor;
     private String Instructor;
     private Integer Price;
     private Integer ToTalTime;
@@ -13,26 +14,29 @@ public class Tour {
 
     private ArrayList<String > listAddress;
 
-    public String getInstructor() {
-        return Instructor;
-    }
-
-    public void setInstructor(String instructor) {
-        Instructor = instructor;
-    }
-
-    public ArrayList<String> getListAddress() {
-        return listAddress;
-    }
-
-    public void setListAddress(ArrayList<String> listAddress) {
-        this.listAddress = listAddress;
-    }
 
     public Tour() {
     }
 
-    public Tour(Integer id, String idInstructor, Integer price, Integer toTalTime, Date timeStart,  Boolean status) {
+    public Tour(Integer id, Integer idIntructor, Integer price, Integer toTalTime, Date timeStart, Boolean status) {
+        Id = id;
+        IdIntructor = idIntructor;
+        Price = price;
+        ToTalTime = toTalTime;
+        TimeStart = timeStart;
+        Status = status;
+    }
+
+    public Tour(Integer id, Integer price, Integer toTalTime, Date timeStart, Boolean status) {
+        Id = id;
+        Price = price;
+        ToTalTime = toTalTime;
+        TimeStart = timeStart;
+        Status = status;
+
+    }
+
+    public Tour(Integer id, String idInstructor, Integer price, Integer toTalTime, Date timeStart, Boolean status) {
         Id = id;
         Instructor = idInstructor;
         Price = price;
@@ -49,12 +53,20 @@ public class Tour {
         Id = id;
     }
 
-    public String getIdInstructor() {
+    public Integer getIdIntructor() {
+        return IdIntructor;
+    }
+
+    public void setIdIntructor(Integer idIntructor) {
+        IdIntructor = idIntructor;
+    }
+
+    public String getInstructor() {
         return Instructor;
     }
 
-    public void setIdInstructor(String idInstructor) {
-        Instructor = idInstructor;
+    public void setInstructor(String instructor) {
+        Instructor = instructor;
     }
 
     public Integer getPrice() {
@@ -81,12 +93,19 @@ public class Tour {
         TimeStart = timeStart;
     }
 
-
     public Boolean getStatus() {
         return Status;
     }
 
     public void setStatus(Boolean status) {
         Status = status;
+    }
+
+    public ArrayList<String> getListAddress() {
+        return listAddress;
+    }
+
+    public void setListAddress(ArrayList<String> listAddress) {
+        this.listAddress = listAddress;
     }
 }

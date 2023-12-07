@@ -19,7 +19,6 @@ public class IntructorDao {
         Statement statement = connection.createStatement();
         String query = "SELECT * " +
                 "FROM instructor " +
-                "JOIN tour ON tour.IdInstructor = instructor.Id \n" +
                 "";
 
 
