@@ -5,17 +5,35 @@ import java.util.ArrayList;
 public class Instructor {
     private Integer Id;
     private String Name;
-    private String Age;
+    private Integer Age;
     private String Email;
     private String Phone;
+    private Integer IdAddress;
     private ArrayList<String> listAddress;
 
-    public Instructor(Integer id, String name, String age, String email, String phone) {
+    public Instructor(Integer id, String name, Integer age, String email, String phone) {
         Id = id;
         Name = name;
         Age = age;
         Email = email;
         Phone = phone;
+    }
+
+    public Instructor(Integer id, String name, Integer age, String email, String phone, Integer idAddress) {
+        Id = id;
+        Name = name;
+        Age = age;
+        Email = email;
+        Phone = phone;
+        IdAddress = idAddress;
+    }
+
+    public Integer getIdAddress() {
+        return IdAddress;
+    }
+
+    public void setIdAddress(Integer idAddress) {
+        IdAddress = idAddress;
     }
 
     public Integer getId() {
@@ -34,11 +52,11 @@ public class Instructor {
         Name = name;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return Age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         Age = age;
     }
 

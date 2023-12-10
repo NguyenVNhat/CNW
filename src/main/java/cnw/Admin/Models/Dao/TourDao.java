@@ -8,15 +8,70 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class TourDao {
-    private Connection connectDB() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        String DB_URL = "jdbc:mysql://localhost:3306/cnw";
-        String USER_NAME = "root";
-        String PASSWORD = "";
-        Connection conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
-        return conn;
-    }
+
     private Connector connector = new Connector();
+    public Integer getTour_count() throws SQLException, ClassNotFoundException {
+        Connection connection = connector.connectDB();
+        Statement statement = connection.createStatement();
+        String query = "SELECT COUNT(*) as count FROM tour";
+        ResultSet resultSet = statement.executeQuery(query);
+        int count = 0;
+        if (resultSet.next()) {
+            count = resultSet.getInt("count");
+        }
+        return count;
+    }
+    public ArrayList<Integer> getTourWeek() throws SQLException, ClassNotFoundException {
+        Connection connection = connector.connectDB();
+        Statement statement = connection.createStatement();
+        String query = "SELECT \n" +
+                "    DAYOFWEEK(timeStart) AS DayOfWeek,\n" +
+                "    COUNT(*) AS NumberOfTours\n" +
+                "FROM tour\n" +
+                "WHERE timeStart >= CURDATE() - INTERVAL WEEKDAY(CURDATE()) DAY\n" +
+                "    AND timeStart < CURDATE() - INTERVAL WEEKDAY(CURDATE()) - 6 DAY\n" +
+                "GROUP BY DAYOFWEEK(timeStart);\n";
+        ResultSet resultSet = statement.executeQuery(query);
+        ArrayList<Integer> tours = new ArrayList<>();
+        for (int i=0;i<7;i++)
+        {
+            tours.add(0);
+        }
+        while (resultSet.next())
+        {
+            String day = resultSet.getString("DayOfWeek");
+            Integer revenue = resultSet.getInt("NumberOfTours");
+            if(day.equals("2"))
+            {
+                tours.set(0,revenue);
+            }
+            else if(day.equals("3"))
+            {
+                tours.set(1,revenue);
+            }
+            else if(day.equals("4"))
+            {
+                tours.set(2,revenue);
+            }
+            else if(day.equals("5"))
+            {
+                tours.set(3,revenue);
+            }
+            else if(day.equals("6"))
+            {
+                tours.set(4,revenue);
+            }
+            else if(day.equals("7"))
+            {
+                tours.set(5,revenue);
+            }
+            else if(day.equals("8"))
+            {
+                tours.set(6,revenue);
+            }
+        }
+        return tours;
+    }
     public ArrayList<Tour> findTourDay(String textsearch) throws SQLException, ClassNotFoundException {
         Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
@@ -66,7 +121,7 @@ public class TourDao {
     }
     public ArrayList<Tour> findTour(String textsearch,String pageId) throws SQLException, ClassNotFoundException {
         ArrayList<Tour> tours = new ArrayList<>();
-            Connection connection = connectDB();
+        Connection connection = connector.connectDB();
             Statement statement = connection.createStatement();
             String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
                     "FROM TOUR " +
@@ -94,7 +149,7 @@ public class TourDao {
         return tours;
     }
     public Tour getDetailTour(Integer Id) throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+        Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
         String query = "select tour.Id , instructor.Name,tour.Price,tour.TotalTime,tour.TimeStart,tour.Status" +
                 " from TOUR " +
@@ -114,7 +169,7 @@ public class TourDao {
         return new Tour(null,null,null,null,null);
     }
     public ArrayList<Tour> getAllTour() throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+        Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
         String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
                 "FROM TOUR " +
@@ -141,7 +196,7 @@ public class TourDao {
         return tours;
     }
     public ArrayList<Tour> getUpTour() throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+        Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
         String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
                 "FROM TOUR " +
@@ -170,7 +225,7 @@ public class TourDao {
         return tours;
     }
     public ArrayList<Tour> getDownTour() throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+        Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
         String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
                 "FROM TOUR " +
@@ -199,7 +254,7 @@ public class TourDao {
         return tours;
     }
     public ArrayList<Tour> getCurrentTour() throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+        Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
         String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
                 "FROM TOUR " +
@@ -229,9 +284,9 @@ public class TourDao {
     }
 
     public ArrayList<String > getListAddress(Integer IdTour) throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+        Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
-        String query = "SELECT address.AddressName " +
+        String query = "SELECT address.Address " +
                 "FROM address " +
                 "JOIN tour_address ON tour_address.IdAddress = address.Id \n" +
                 "WHERE tour_address.IdTour = '"+IdTour+"'";
@@ -241,7 +296,7 @@ public class TourDao {
         ArrayList<String> address = new ArrayList<>();
 
         while (resultSet.next()) {
-            String name = resultSet.getString("AddressName");
+            String name = resultSet.getString("Address");
             address.add(name);
         }
         return address;
@@ -249,7 +304,7 @@ public class TourDao {
 
 
     public Boolean addTour(Tour tour) throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+        Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
         Date defaultDateString = tour.getTimeStart();
 
@@ -272,7 +327,7 @@ public class TourDao {
         else return  false;
     }
     public Boolean updateTour(Tour tour) throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+        Connection connection = connector.connectDB();
 
         Date defaultDateString = tour.getTimeStart();
 
@@ -295,16 +350,12 @@ public class TourDao {
         }
         else return  false;
     }
-    public Boolean deleteTour(Integer Id) throws SQLException, ClassNotFoundException {
-        Connection connection = connectDB();
+    public void deleteTour(Integer Id) throws SQLException, ClassNotFoundException {
+        Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
         String query = "DELETE FROM `tour` WHERE Id = '"+Id+"'";
         Integer result = statement.executeUpdate(query);
-        if (result >0)
-        {
-            return  true;
-        }
-        else return  false;
+
     }
 
 }

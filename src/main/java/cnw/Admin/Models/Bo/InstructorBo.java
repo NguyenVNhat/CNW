@@ -14,4 +14,16 @@ public class InstructorBo {
     public ArrayList<Instructor> getAllIntructor() throws SQLException, ClassNotFoundException {
         return intructorDao.getAllIntructor();
     }
+    public Integer getInstructor_count() throws SQLException, ClassNotFoundException {
+        return intructorDao.getInstructor_count();
+    }
+    public void Add(Instructor instructor) throws SQLException, ClassNotFoundException {
+        intructorDao.Add(instructor);
+    }
+    public Instructor getDetail(Integer Id) throws SQLException, ClassNotFoundException {
+        return intructorDao.getDetail(Id);
+    }
+    public void Update(Integer Id , String name, Integer age,String email,String phone) throws SQLException, ClassNotFoundException {
+        intructorDao.Update(Id,name,age,email,phone);
+    }
 }

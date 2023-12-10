@@ -1,6 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="cnw.Admin.Models.Bean.Travel_Tour" %>
 <%@ page import="cnw.Admin.Models.Bean.Traveler" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,66 +26,66 @@
                 {
             %>
             <div class="item item-init" style="border-bottom: solid;background-color: #cecece;" >
-                <a style="margin-right: 5px" href="../tour?action=getallTour" target="_self">Tất cả</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getallTravelTour" target="_self">Tất cả</a>
             </div>
             <div class="item">
-                <a style="margin-right: 5px" href="../tour?action=getUpTour" target="_self">Sắp tới</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getUpTravelTour" target="_self">Sắp tới</a>
             </div>
             <div class="item">
-                <a style="margin-right: 5px" href="../tour?action=getDownTour" target="_self">Đã qua</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getDownTravelTour" target="_self">Đã qua</a>
             </div>
             <div class="item">
-                <a style="margin-right: 5px" href="../tour?action=getCurrentTour" target="_self">Hiện có</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getCurrentTravelTour" target="_self">Hiện có</a>
             </div>
             <%} else if (pageId.equals("2")) {
 
             %>
             <div class="item "  >
-                <a style="margin-right: 5px" href="../tour?action=getallTour" target="_self">Tất cả</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getallTravelTour" target="_self">Tất cả</a>
             </div>
             <div class="item item-init" style="border-bottom: solid;background-color: #cecece;">
-                <a style="margin-right: 5px" href="../tour?action=getUpTour" target="_self">Sắp tới</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getUpTravelTour" target="_self">Sắp tới</a>
             </div>
             <div class="item">
-                <a style="margin-right: 5px" href="../tour?action=getDownTour" target="_self">Đã qua</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getDownTravelTour" target="_self">Đã qua</a>
             </div>
             <div class="item">
-                <a style="margin-right: 5px" href="../tour?action=getCurrentTour" target="_self">Hiện có</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getCurrentTravelTour" target="_self">Hiện có</a>
             </div>
             <%} else if (pageId.equals("3")) {
             %>
             <div class="item "  >
-                <a style="margin-right: 5px" href="../tour?action=getallTour" target="_self">Tất cả</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getallTravelTour" target="_self">Tất cả</a>
             </div>
             <div class="item ">
-                <a style="margin-right: 5px" href="../tour?action=getUpTour" target="_self">Sắp tới</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getUpTravelTour" target="_self">Sắp tới</a>
             </div>
             <div class="item item-init" style="border-bottom: solid;background-color: #cecece;">
-                <a style="margin-right: 5px" href="../tour?action=getDownTour" target="_self">Đã qua</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getDownTravelTour" target="_self">Đã qua</a>
             </div>
             <div class="item">
-                <a style="margin-right: 5px" href="../tour?action=getCurrentTour" target="_self">Hiện có</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getCurrentTravelTour" target="_self">Hiện có</a>
             </div>
             <%} else if (pageId.equals("4")) {
             %>
             <div class="item "  >
-                <a style="margin-right: 5px" href="../tour?action=getallTour" target="_self">Tất cả</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getallTravelTour" target="_self">Tất cả</a>
             </div>
             <div class="item ">
-                <a style="margin-right: 5px" href="../tour?action=getUpTour" target="_self">Sắp tới</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getUpTravelTour" target="_self">Sắp tới</a>
             </div>
             <div class="item " >
-                <a style="margin-right: 5px" href="../tour?action=getDownTour" target="_self">Đã qua</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getDownTravelTour" target="_self">Đã qua</a>
             </div>
             <div class="item item-init" style="border-bottom: solid;background-color: #cecece;">
-                <a style="margin-right: 5px" href="../tour?action=getCurrentTour" target="_self">Hiện có</a>
+                <a style="margin-right: 5px" href="../traveltour?action=getCurrentTravelTour" target="_self">Hiện có</a>
             </div>
             <%}%>
 
         </div>
         <div class="findTour">
             <div class="divForm">
-                <form action="../tour?action=findTour&typeSearch=<%=pageId%>" method="post" style="display: flex;width: 100%;height: 100%;">
+                <form action="../traveltour?action=findTour&typeSearch=<%=pageId%>" method="post" style="display: flex;width: 100%;height: 100%;">
                     <input type="text" name="textsearch" class="textsearch" />
                     <button type="submit" class="buttonSubmit">
                         OK
@@ -93,7 +95,7 @@
         </div>
         <div class="findByTime">
             <div class="border">
-                <form class="formTime" action="../tour?action=findTourDay&pageId=<%=pageId%>" method="post">
+                <form class="formTime" action="../traveltour?action=findTourDay&pageId=<%=pageId%>" method="post">
                     <select  name="textsearch" class="textsearch_1">
                         <option value="1">Today</option>
                         <option value="2">Yesterday</option>
@@ -109,15 +111,15 @@
         </div>
     </section>
     <div class="iframe" id="mainFrame" >
-
+        <form action="../traveltour?action=deleteAll" method="post" onsubmit="return validateForm()">
         <table class="table-list">
             <thead class="thead">
             <tr>
-                <th style="width: 5%;"><input type="checkbox" /></th>
-                <th>Id</th>
+                <th style="width: 5%;"><input type="checkbox" id="selectAll"/></th>
+                <th>TimeStart</th>
                 <th>Price</th>
                 <th>Address</th>
-                <th>Traveler</th>
+                <th>ToTalTime</th>
                 <th>#</th>
             </tr>
             </thead>
@@ -126,13 +128,20 @@
                 ArrayList<Travel_Tour> tours = (ArrayList<Travel_Tour>) request.getAttribute("tours");
                 for (Travel_Tour item: tours
                 ) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(item.getTimeStart());
+                    calendar.add(Calendar.DAY_OF_YEAR, item.getToTalTime());
+                    Date datedelete = calendar.getTime();
+                    Date now = new Date();
+                    if(item.getTimeStart().before(now) && datedelete.after(now))
+                    {
             %>
             <tr class="tr1">
-                <td><input type="checkbox" /></td>
-                <td><%=item.getIdTour() %></td>
+                <td>-</td>
+                <td><%=item.getTimeStart() %></td>
                 <td><%=item.getPrice() %></td>
                 <td style="position: relative;" class="divmodal">
-                    <button class="button_modal">
+                    <button class="button_modal" type="button" >
                         View
                     </button>
                     <div class="modal" >
@@ -151,40 +160,97 @@
                         <% index++;}} %>
                     </div>
                 </td>
+                <td><%=item.getToTalTime() %> ngày</td>
+                <td>
+                    <a style="margin-right: 10px;" href="../traveltour?action=getdetailTour&Id=<%= item.getIdTour()%>" target="_self"><i class="fa-regular fa-eye"></i></a>
+                    <a style="margin-right: 10px;" href="../traveltour?action=ToupdateTour&Id=<%= item.getIdTour()%>"><i class="fa-regular fa-pen-to-square"></i></a>
+
+                </td>
+            </tr>
+            <%}else{
+            %>
+            <tr class="tr1">
+                <td><input type="checkbox" class="rowCheckbox" name="IdTour" value="<%=item.getIdTour()%>"/></td>
+                <td><%=item.getTimeStart() %></td>
+                <td><%=item.getPrice() %></td>
                 <td style="position: relative;" class="divmodal">
-                    <button class="button_modal">
+                    <button class="button_modal" >
                         View
                     </button>
                     <div class="modal" >
                         <%
-                            if(item.getListTraveler().isEmpty())
+                            if(item.getListAddress().isEmpty())
                             {
                         %>
                         <p style="margin-left: 10px;margin-top: 20px">Chưa chọn địa điểm cho tour này</p>
                         <%}
                         else {
                             Integer index = 1;
-                            for (Traveler travel: item.getListTraveler()
+                            for (String address: item.getListAddress()
                             ) {
                         %>
-                        <p style="margin-left: 10px;margin-top: 10px">Thành viên <%=index%> : <%=travel.getName()%></p>
+                        <p style="margin-left: 10px;margin-top: 10px">Địa điểm <%=index%> : <%=address%></p>
                         <% index++;}} %>
                     </div>
                 </td>
-
+                <td><%=item.getToTalTime() %> ngày</td>
                 <td>
-                    <a style="margin-right: 10px;" href="../tour?action=getdetailTour&Id=<%= item.getIdTour()%>" target="_self"><i class="fa-regular fa-eye"></i></a>
-                    <a style="margin-right: 10px;" href="../tour?action=ToupdateTour&Id=<%= item.getIdTour()%>"><i class="fa-regular fa-pen-to-square"></i></a>
-                    <a href="../tour?action=TodeleteTour&Id=<%= item.getIdTour()%>"><i class="fa-solid fa-square-minus"></i></a>
+                    <a style="margin-right: 10px;" href="../traveltour?action=getdetailTour&Id=<%= item.getIdTour()%>" target="_self"><i class="fa-regular fa-eye"></i></a>
+                    <a style="margin-right: 10px;" href="../traveltour?action=ToupdateTour&Id=<%= item.getIdTour()%>"><i class="fa-regular fa-pen-to-square"></i></a>
+
                 </td>
             </tr>
-            <%}%>
+            <%}}%>
             </tbody>
         </table>
-
+            <button type="submit" style="width: 100px;height: 30px;border: none;background-color: lightcoral;margin-top: 20px" id="deleteButton">Xóa</button>
+        </form>
     </div>
 </section>
+<script>
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const rowCheckboxes = document.querySelectorAll('.rowCheckbox');
+    selectAllCheckbox.addEventListener('change', function() {
+        rowCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+    });
 
+</script>
+
+<script>
+    function validateForm() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"].rowCheckbox');
+        var checked = false;
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checked = true;
+            }
+        });
+        if (!checked) {
+            alert("Vui lòng chọn ít nhất một ô.");
+            return false;
+        }
+        return true;
+    }
+    document.addEventListener('change', function(event) {
+        if (event.target.matches('input[type="checkbox"].rowCheckbox')) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"].rowCheckbox');
+            var deleteButton = document.getElementById('deleteButton');
+            var checked = false;
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checked = true;
+                }
+            });
+            if (checked) {
+                deleteButton.disabled = false;
+            } else {
+                deleteButton.disabled = true;
+            }
+        }
+    });
+</script>
 
 </body>
 </html>

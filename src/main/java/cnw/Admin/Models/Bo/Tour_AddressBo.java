@@ -9,5 +9,14 @@ public class Tour_AddressBo {
     public void Add(Integer IdTour,Integer IdAddress) throws SQLException, ClassNotFoundException {
         tourAddressDao.Add(IdTour, IdAddress);
     }
+    public void Update( Integer Id,String[] selectedAddresses) throws SQLException, ClassNotFoundException {
+        tourAddressDao.Delete(Id);
+        for (String address: selectedAddresses
+        ) {
+            Integer IdAddress = Integer.valueOf(address);
+            tourAddressDao.Add(Id,IdAddress);
+        }
+
+    }
 
 }

@@ -26,11 +26,11 @@ public class AdminController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         System.out.println(action);
+        HttpSession session = req.getSession();;
         if (action.equals("adminlogin"))
         {
             String adminname = req.getParameter("Adminname");
             String password = req.getParameter("Password");
-            HttpSession session = req.getSession();;
             try {
                 Boolean res = adminBo.isValidAdmin(adminname,password);
                 if (res)
@@ -56,6 +56,15 @@ public class AdminController extends HttpServlet {
                 throw new RuntimeException(e);
             }
 
+        } else if (action.equals("logout")) {
+            session.removeAttribute("adminname");
+            String destination = "/Admin/AdminLogin.jsp";
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+            rd.forward(req,resp);
         }
+    }
+    public void setUpDataDashBoard()
+    {
+
     }
 }

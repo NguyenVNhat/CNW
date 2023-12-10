@@ -1,6 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="cnw.Admin.Models.Bean.Tour" %>
 <%@ page import="cnw.Admin.Models.Bean.Travel_Tour" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,11 +111,11 @@
         </div>
     </section>
     <div class="iframe" id="mainFrame" >
-
+    <form action="../tour?action=deleteAll" method="post">
         <table class="table-list">
             <thead class="thead">
             <tr>
-                <th style="width: 5%;"><input type="checkbox" /></th>
+                <th style="width: 5%;"><input type="checkbox" id="selectAll" /></th>
                 <th>Id</th>
                 <th>Instructor</th>
                 <th>Price</th>
@@ -127,9 +129,16 @@
                 ArrayList<Tour> tours = (ArrayList<Tour>) request.getAttribute("tours");
                 for (Tour item: tours
                 ) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(item.getTimeStart());
+                    calendar.add(Calendar.DAY_OF_YEAR, item.getToTalTime());
+                    Date datedelete = calendar.getTime();
+                    Date now = new Date();
+                    if(item.getTimeStart().before(now) && datedelete.after(now))
+                    {
             %>
             <tr class="tr1">
-                <td style="width: 5%;"><input type="checkbox" /> </td>
+                <td style="width: 5%;">-</td>
                 <td><%=item.getId() %></td>
                 <td><%=item.getInstructor() %></td>
                 <td><%=item.getPrice() %></td>
@@ -158,16 +167,61 @@
                 <td>
                     <a style="margin-right: 10px;" href="../tour?action=getdetailTour&Id=<%= item.getId()%>" target="_self"><i class="fa-regular fa-eye"></i></a>
                     <a style="margin-right: 10px;" href="../tour?action=ToupdateTour&Id=<%= item.getId()%>"><i class="fa-regular fa-pen-to-square"></i></a>
-                    <a href="../tour?action=TodeleteTour&Id=<%= item.getId()%>"><i class="fa-solid fa-square-minus"></i></a>
+
                 </td>
             </tr>
-            <%}%>
+            <% }else{
+            %>
+            <tr class="tr1">
+                <td style="width: 5%;"><input type="checkbox" class="rowCheckbox" name="IdSelected" value="<%=item.getId() %>"></td>
+                <td><%=item.getId() %></td>
+                <td><%=item.getInstructor() %></td>
+                <td><%=item.getPrice() %></td>
+                <td><%=item.getToTalTime() %> ngày</td>
+                <td style="position: relative;" class="divmodal">
+                    <button class="button_modal" type="button">
+                        View
+                    </button>
+                    <div class="modal" >
+                        <%
+                            if(item.getListAddress().isEmpty())
+                            {
+                        %>
+                        <p style="margin-left: 10px;margin-top: 20px">Chưa chọn địa điểm cho tour này</p>
+                        <%}
+                        else {
+                            Integer index = 1;
+                            for (String address: item.getListAddress()
+                            ) {
+                        %>
+                        <p style="margin-left: 10px;margin-top: 10px">Địa điểm <%=index%> : <%=address%></p>
+                        <% index++;}} %>
+                    </div>
+                </td>
+
+                <td>
+                    <a style="margin-right: 10px;" href="../tour?action=getdetailTour&Id=<%= item.getId()%>" target="_self"><i class="fa-regular fa-eye"></i></a>
+                    <a style="margin-right: 10px;" href="../tour?action=ToupdateTour&Id=<%= item.getId()%>"><i class="fa-regular fa-pen-to-square"></i></a>
+
+                </td>
+            </tr>
+            <%}}%>
             </tbody>
         </table>
-
+        <button type="submit" style="width: 150px;height: 50px;background-color: rgb(204, 228, 249);border: none">Xóa</button>
+    </form>
     </div>
 </section>
+<script>
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const rowCheckboxes = document.querySelectorAll('.rowCheckbox');
+    selectAllCheckbox.addEventListener('change', function() {
+        rowCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+    });
 
+</script>
 
 </body>
 </html>

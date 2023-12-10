@@ -1,7 +1,9 @@
 package cnw.Admin.Models.Bo;
 
+import cnw.Admin.Models.Bean.Instructor;
 import cnw.Admin.Models.Bean.Tour;
 import cnw.Admin.Models.Dao.TourDao;
+import cnw.Admin.Models.Dao.Travel_TourDao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +13,12 @@ public class TourBo {
     public Tour getDetailTour(Integer Id) throws SQLException, ClassNotFoundException {
         return tourDao.getDetailTour(Id);
     }
-
+    public Integer getTour_count() throws SQLException, ClassNotFoundException {
+        return tourDao.getTour_count();
+    }
+    public ArrayList<Integer> getTourWeek() throws SQLException, ClassNotFoundException {
+        return tourDao.getTourWeek();
+    }
     public ArrayList<Tour> findTourDay(String textSearch) throws SQLException, ClassNotFoundException {
         return tourDao.findTourDay(textSearch);
     }
@@ -39,7 +46,11 @@ public class TourBo {
     public Boolean updateTour(Tour tour) throws SQLException, ClassNotFoundException {
         return tourDao.updateTour(tour);
     }
-    public Boolean deleteTour(Integer Id) throws SQLException, ClassNotFoundException {
-        return tourDao.deleteTour(Id);
+    public void deleteTour(Integer Id) throws SQLException, ClassNotFoundException {
+
+        Travel_TourDao travelTourDao = new Travel_TourDao();
+        travelTourDao.Delete(Id);
+            tourDao.deleteTour(Id);
     }
+
 }

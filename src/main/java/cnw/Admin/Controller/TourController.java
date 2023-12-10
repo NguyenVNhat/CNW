@@ -46,9 +46,7 @@ public class TourController extends HttpServlet
         {
             try {
                 getUpTour(req,resp);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -56,9 +54,7 @@ public class TourController extends HttpServlet
         {
             try {
                 getDownTour(req,resp);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -66,9 +62,7 @@ public class TourController extends HttpServlet
         {
             try {
                 getCurrentTour(req,resp);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -84,9 +78,24 @@ public class TourController extends HttpServlet
 
                 Integer IdTour = Integer.parseInt(req.getParameter("Id")) ;
                 InstructorBo instructorBo = new InstructorBo();
+                AddressBo addressBo = new AddressBo();
+
                 ArrayList<Instructor> instructors  = instructorBo.getListIntructor(IdTour);
-                req.setAttribute("detailIns",instructors);
                 Tour tour = tourBo.getDetailTour(IdTour);
+                ArrayList<Address> addresses  = addressBo.getAddressByIdTour(IdTour);
+
+                ArrayList<Instructor> instructorALl  = null;
+                ArrayList<Address> addressesAll  = null;
+
+                instructorALl = instructorBo.getAllIntructor();
+                addressesAll = addressBo.getAllAddress();
+
+                req.setAttribute("instructorALl",instructorALl);
+                req.setAttribute("addressesAll",addressesAll);
+
+
+                req.setAttribute("detailIns",instructors);
+                req.setAttribute("detailAddress",addresses);
                 req.setAttribute("detailTour",tour);
 
                 String destination = "/Admin/formUpdateTour.jsp";
@@ -100,20 +109,35 @@ public class TourController extends HttpServlet
         else if (action.equals("updateTour")){
             try {
                 updateTour(req, resp);
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (ParseException | SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
         else if (action.equals("TodeleteTour")){
             try {
                 Integer IdTour = Integer.parseInt(req.getParameter("Id")) ;
+                InstructorBo instructorBo = new InstructorBo();
+                AddressBo addressBo = new AddressBo();
+
+                ArrayList<Instructor> instructors  = instructorBo.getListIntructor(IdTour);
                 Tour tour = tourBo.getDetailTour(IdTour);
+                ArrayList<Address> addresses  = addressBo.getAddressByIdTour(IdTour);
+
+                ArrayList<Instructor> instructorALl  = null;
+                ArrayList<Address> addressesAll  = null;
+
+                instructorALl = instructorBo.getAllIntructor();
+                addressesAll = addressBo.getAllAddress();
+
+                req.setAttribute("instructorALl",instructorALl);
+                req.setAttribute("addressesAll",addressesAll);
+
+
+                req.setAttribute("detailIns",instructors);
+                req.setAttribute("detailAddress",addresses);
                 req.setAttribute("detailTour",tour);
-                String destination = "/Admin/formDelete.jsp";
+
+                String destination = "/Admin/formDeleteTour.jsp";
                 RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
                 rd.forward(req,resp);
             } catch (SQLException | ClassNotFoundException e) {
@@ -121,7 +145,11 @@ public class TourController extends HttpServlet
             }
         }
         else if (action.equals("deleteTour")){
-
+            try {
+                deleteTour(req, resp);
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else if (action.equals("ToAddTour")){
             InstructorBo instructorBo = new InstructorBo();
@@ -131,9 +159,7 @@ public class TourController extends HttpServlet
             try {
                 instructors = instructorBo.getAllIntructor();
                 addresses = addressBo.getAllAddress();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             req.setAttribute("detailIns",instructors);
@@ -145,31 +171,44 @@ public class TourController extends HttpServlet
         else if (action.equals("addTour")){
             try {
                 addTour(req, resp);
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (ParseException | SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         } else if (action.equals("findTour")) {
             try {
                 findTour(req, resp);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
         else if (action.equals("findTourDay")) {
             try {
                 findTourDay(req, resp);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
+        else if (action.equals("deleteAll")) {
+            try {
+                deleteAll(req, resp);
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    public void deleteAll(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        String[] selectedItem = req.getParameterValues("IdSelected");
+        for (String item: selectedItem
+             ) {
+            Integer IdTour = Integer.parseInt(item);
+            tourBo.deleteTour(IdTour);
+        }
+        getAllTour(req, resp);
+    }
+    public void deleteTour(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
+        Integer IdTour = Integer.parseInt(req.getParameter("IdTour"));
+        tourBo.deleteTour(IdTour);
+        getAllTour(req, resp);
     }
     public void findTourDay(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String textsearch = req.getParameter("textsearch");
@@ -202,18 +241,24 @@ public class TourController extends HttpServlet
         rd.forward(req,resp);
     }
     public void updateTour(HttpServletRequest req, HttpServletResponse resp) throws ParseException, SQLException, ClassNotFoundException, ServletException, IOException {
-         Integer Id = Integer.parseInt(req.getParameter("Id"));
-         String Instructor =req.getParameter("Intructor");
-         Integer Price= Integer.parseInt(req.getParameter("Price"));
-         Integer ToTalTime =Integer.parseInt(req.getParameter("TotalTime"));
-         String TimeStart = req.getParameter("TimeStart");
-         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-         Date timeStartDate = dateFormat.parse(TimeStart);
-         Boolean Status = Boolean.parseBoolean(req.getParameter("Status"));
-         Tour tour = new Tour(Id,Instructor,Price,ToTalTime,timeStartDate,Status);
+        Integer Id =Integer.parseInt(req.getParameter("Id"));
+        Integer Price = Integer.parseInt(req.getParameter("Price"));
+        Integer TotalTime = Integer.parseInt(req.getParameter("TotalTime"));
+
+        String TimeStart = req.getParameter("TimeStart");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date timeStartDate = dateFormat.parse(TimeStart);
+        String[] selectedAddresses = req.getParameterValues("IdAddress");
+        Integer IdInstructor =  Integer.parseInt(req.getParameter("IdInstructor"));
+        Tour tour = new Tour(Id,IdInstructor,Price,TotalTime,timeStartDate,true);
+
+        Tour_AddressBo addressBo = new Tour_AddressBo();
             Boolean res = tourBo.updateTour(tour);
             if(res)
             {
+
+                addressBo.Update(Id,selectedAddresses);
+
                 getAllTour(req, resp);
             }
             else{
@@ -240,7 +285,7 @@ public class TourController extends HttpServlet
         Date timeStartDate = dateFormat.parse(TimeStart);
         String[] selectedAddresses = req.getParameterValues("IdAddress");
         Integer IdInstructor =  Integer.parseInt(req.getParameter("IdInstructor"));
-        System.out.println("--"+IdInstructor);
+
 
         Tour_AddressBo addressBo = new Tour_AddressBo();
 

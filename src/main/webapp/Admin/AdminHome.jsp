@@ -11,10 +11,14 @@
     <link rel="stylesheet" href="/Admin/asset/fontawesome/fontawesome-free-6.4.2-web/css/all.css">
 </head>
 <body>
+<%
+    if(session.getAttribute("adminname") != null )
+    {
+%>
 <section class="contain">
     <section class="slider-bar">
         <div class="logo-header">
-            <h1 style="font-size: 40px;padding-top: 20px;">ADMIN</h1>
+            <h1 style="font-size: 40px;padding-top: 20px;"><%=session.getAttribute("adminname")%></h1>
         </div>
         <div class="list-function">
             <div class="divitem">
@@ -23,7 +27,7 @@
                     <div class="item-view">
                         <div class="name-item">
                             <i class="fa-solid fa-house fa-xl"></i>
-                            <a href="#" style="margin-left: 10px">Dashboard</a>
+                            <a href="../dashboard?action=dashboardView" target="main-content" style="margin-left: 10px">Dashboard</a>
                         </div>
 
                         <i class="fa-solid fa-caret-right fa-xl"></i>
@@ -46,7 +50,10 @@
                     </div>
                 </div>
                 <div class="sub-item">
-
+                    <div class="sub-function">
+                        <i class="fa-solid fa-folder-plus" style="margin-left: 20px ;"></i>
+                        <a href="../traveltour?action=ToAddTour" target="main-content" style="margin-left: 10px ;color:#fff">Tour</a>
+                    </div>
                 </div>
             </div>
             <div class="divitem">
@@ -89,8 +96,25 @@
                 <div class="parent-item">
                     <div class="item-view">
                         <div class="name-item">
-                            <i class="fa-solid fa-house fa-xl"></i>
-                            <a href="#" style="margin-left: 10px">Dashboard</a>
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                            <i class="fa-solid fa-earth-americas"></i>
+                            <a href="../insaddress?action=insandaddress"  target="main-content" style="margin-left: 10px">Hướng dẫn viên / Địa điểm</a>
+                        </div>
+
+                        <i class="fa-solid fa-caret-right fa-xl"></i>
+                    </div>
+                </div>
+                <div class="sub-item">
+
+                </div>
+            </div>
+            <div class="divitem">
+                <div class="index"></div>
+                <div class="parent-item">
+                    <div class="item-view">
+                        <div class="name-item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <a href="../admin-login?action=logout"  target="_self" style="margin-left: 10px">Đăng xuất</a>
                         </div>
 
                         <i class="fa-solid fa-caret-right fa-xl"></i>
@@ -115,10 +139,14 @@
             </div>
 
         </div>
-        <iframe class="main-content" id="main-content" name="main-content">
+        <iframe class="main-content" id="main-content" name="main-content" >
 
         </iframe>
     </section>
 </section>
+<%} else
+{
+    request.getRequestDispatcher("/Admin/AdminLogin.jsp");
+}%>
 </body>
 </html>

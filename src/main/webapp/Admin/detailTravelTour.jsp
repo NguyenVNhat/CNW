@@ -1,4 +1,6 @@
-<%@ page import="cnw.Admin.Models.Bean.Tour" %>
+<%@ page import="cnw.Admin.Models.Bean.Travel_Tour" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="cnw.Admin.Models.Bean.Traveler" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +15,8 @@
 </head>
 <body>
 <%
-    Tour tour = (Tour) request.getAttribute("detailTour");
+    Travel_Tour tour =(Travel_Tour) request.getAttribute("tours");
+
 %>
 <section >
     <div class="contain">
@@ -24,8 +27,8 @@
                         <img src="/Admin/asset/image/room1.30b5f04027f80ebe153b.jpg" />
                     </div>
                     <div class="top-right">
-                        <p style="font-size: 50px;font-weight: 600;font-family: 'Merriweather Sans', sans-serif;">TOUR 1</p>
-                        <p>ID : <%= tour.getId() %></p>
+                        <p style="font-size: 50px;font-weight: 600;font-family: 'Merriweather Sans', sans-serif;">TOUR <%= tour.getIdTour() %></p>
+                        <p>ID : <%= tour.getIdTour() %></p>
                         <div class="price">
                             <p>Giá : <%= tour.getPrice() %> VNĐ</p>
                         </div>
@@ -44,7 +47,7 @@
             </div>
             <div class="second-item">
                 <div class="instructor">
-                    <p>Hướng dẫn viên : <%=tour.getInstructor()%></p>
+                    <p>Hướng dẫn viên :<%= tour.getInstructor() %> </p>
                 </div>
                 <table>
                     <thead class="head-address">
@@ -69,68 +72,40 @@
                 </table>
             </div>
         </div>
-        <div class="image-tour">
-            <div class="slideshow-container">
+        <div class="image-tour" style="width: 50%">
+            <table style="width: 100%">
+                <thead class="head-address">
+                <tr>
+                    <th>Id</th>
+                    <th>Họ tên</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                    <th>SĐT</th>
+                </tr>
+                </thead>
+                <tbody class="body-address">
+                <%
+                    for (Traveler traveler: tour.getListTraveler()
+                    ) {
+                %>
+                <tr class="tr1">
+                    <td><%=traveler.getId()%></td>
+                    <td><%=traveler.getName()%></td>
+                    <td><%=traveler.getAddress()%></td>
+                    <td><%=traveler.getEmail()%></td>
+                    <td><%=traveler.getPhone()%></td>
 
-                <div class="mySlides fade">
-                    <div class="numbertext">1 / 3</div>
-                    <img src="/Admin/asset/image/poster.jpg" style="height:700px;width: 100%;">
-                    <div class="text"></div>
-                </div>
+                </tr>
+                <%} %>
 
-                <div class="mySlides fade">
-                    <div class="numbertext">2 / 3</div>
-                    <img src="/Admin/asset/image/poster2.jpg" style="height:700px;width: 100%;">
-                    <div class="text"></div>
-                </div>
 
-                <div class="mySlides fade">
-                    <div class="numbertext">3 / 3</div>
-                    <img src="/Admin/asset/image/poster3.jpg" style="height:700px;width: 100%;">
-                    <div class="text"></div>
-                </div>
+                </tbody>
+            </table>
 
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
-
-            </div>
-            <br>
-
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-            </div>
         </div>
     </div>
 </section>
-<script>
-    let slideIndex = 1;
-    showSlides(slideIndex);
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-    }
-</script>
 </body>
 </html>
+

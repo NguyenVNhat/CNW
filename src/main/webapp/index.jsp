@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-Index
+<% request.getRequestDispatcher("/Admin/AdminLogin.jsp"); %>
 </body>
 </html>
