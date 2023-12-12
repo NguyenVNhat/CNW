@@ -20,8 +20,8 @@ public class SummaryProfile {
     private String avatar;
     public SummaryProfile(Admin admin) {
         this.id = admin.getId();
-        this.username = admin.getUsername();
-        this.name = admin.getUsername();
+        this.username = admin.getAdminname();
+        this.name = admin.getAdminname();
         this.role = Role.ADMIN;
     }
     public SummaryProfile(Traveler traveler){
