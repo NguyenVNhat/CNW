@@ -34,7 +34,7 @@
             <div class="form">
                 <form class="form-login-main" name="form_1" action="../admin-login?action=adminlogin" method="post">
                     <input type="text" id="Adminname" name="Adminname" class="Adminname" placeholder="Admin name" />
-                    <input type="text" id="Password" name="Password" class="Password" placeholder="Password" />
+                    <input type="password" id="Password" name="Password" class="Password" placeholder="Password" />
                     <a class="forgetpassword" href="#">Forget Password ?</a>
                     <%
                         String error = (String) request.getAttribute("Error");

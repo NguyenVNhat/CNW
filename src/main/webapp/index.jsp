@@ -9,8 +9,15 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+    </style>
 </head>
 <body>
-<% request.getRequestDispatcher("/Admin/AdminLogin.jsp"); %>
+    <a href="/Admin/AdminLogin.jsp">Tới trang đăng nhập</a>
 </body>
 </html>

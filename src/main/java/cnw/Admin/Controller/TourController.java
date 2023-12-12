@@ -250,7 +250,10 @@ public class TourController extends HttpServlet
         Date timeStartDate = dateFormat.parse(TimeStart);
         String[] selectedAddresses = req.getParameterValues("IdAddress");
         Integer IdInstructor =  Integer.parseInt(req.getParameter("IdInstructor"));
-        Tour tour = new Tour(Id,IdInstructor,Price,TotalTime,timeStartDate,true);
+        String Name = req.getParameter("Name");
+        String Description = req.getParameter("Description");
+
+        Tour tour = new Tour(Id,IdInstructor,Price,TotalTime,timeStartDate,true,Name,Description);
 
         Tour_AddressBo addressBo = new Tour_AddressBo();
             Boolean res = tourBo.updateTour(tour);
@@ -285,11 +288,12 @@ public class TourController extends HttpServlet
         Date timeStartDate = dateFormat.parse(TimeStart);
         String[] selectedAddresses = req.getParameterValues("IdAddress");
         Integer IdInstructor =  Integer.parseInt(req.getParameter("IdInstructor"));
-
+        String Name = req.getParameter("Name");
+        String Description = req.getParameter("Description");
 
         Tour_AddressBo addressBo = new Tour_AddressBo();
 
-        Tour tour = new Tour(Id,IdInstructor,Price,TotalTime,timeStartDate,true);
+        Tour tour = new Tour(Id,IdInstructor,Price,TotalTime,timeStartDate,true,Name,Description);
         Boolean res = tourBo.addTour(tour);
         if(res)
         {
@@ -301,8 +305,21 @@ public class TourController extends HttpServlet
             getAllTour(req, resp);
         }
         else{
-            String error = "Thêm thất bại";
+            String error = "Thêm tour mới thất bại";
             req.setAttribute("error",error);
+
+            InstructorBo instructorBo = new InstructorBo();
+            AddressBo addressBo1 = new AddressBo();
+            ArrayList<Instructor> instructors  = null;
+            ArrayList<Address> addresses  = null;
+            try {
+                instructors = instructorBo.getAllIntructor();
+                addresses = addressBo1.getAllAddress();
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            req.setAttribute("detailIns",instructors);
+            req.setAttribute("detailAddress",addresses);
             String destination = "/Admin/formAddTour.jsp";
             RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
             rd.forward(req,resp);

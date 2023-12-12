@@ -1,86 +1,74 @@
 package cnw.Admin.Models.Bean;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "instructor")
 public class Instructor {
-    private Integer Id;
-    private String Name;
-    private Integer Age;
-    private String Email;
-    private String Phone;
-    private Integer IdAddress;
-    private ArrayList<String> listAddress;
+    @Id
+    @Column(name = "Id")
+    private Integer id;
+
+    @Column(name = "Name")
+    private String name;
+
+    @Column(name = "Age")
+    private Integer age;
+
+    @Column(name = "Email")
+    private String email;
+
+    @Column(name = "Phone")
+    private String phone;
+
+    public Instructor() {
+    }
 
     public Instructor(Integer id, String name, Integer age, String email, String phone) {
-        Id = id;
-        Name = name;
-        Age = age;
-        Email = email;
-        Phone = phone;
-    }
-
-    public Instructor(Integer id, String name, Integer age, String email, String phone, Integer idAddress) {
-        Id = id;
-        Name = name;
-        Age = age;
-        Email = email;
-        Phone = phone;
-        IdAddress = idAddress;
-    }
-
-    public Integer getIdAddress() {
-        return IdAddress;
-    }
-
-    public void setIdAddress(Integer idAddress) {
-        IdAddress = idAddress;
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.phone = phone;
     }
 
     public Integer getId() {
-        return Id;
+        return this.id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return this.name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public Integer getAge() {
-        return Age;
+        return this.age;
     }
 
     public void setAge(Integer age) {
-        Age = age;
+        this.age = age;
     }
 
     public String getEmail() {
-        return Email;
+        return this.email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPhone() {
-        return Phone;
+        return this.phone;
     }
 
     public void setPhone(String phone) {
-        Phone = phone;
-    }
-
-    public ArrayList<String> getListAddress() {
-        return listAddress;
-    }
-
-    public void setListAddress(ArrayList<String> listAddress) {
-        this.listAddress = listAddress;
+        this.phone = phone;
     }
 }

@@ -11,6 +11,36 @@ public class Tour {
     private Integer ToTalTime;
     private Date TimeStart;
     private Boolean Status;
+    private String Name;
+    private String Description;
+
+    public Tour(Integer id,  String instructor, Integer price, Integer toTalTime, Date timeStart, Boolean status, String name, String description) {
+        Id = id;
+
+        Instructor = instructor;
+        Price = price;
+        ToTalTime = toTalTime;
+        TimeStart = timeStart;
+        Status = status;
+        Name = name;
+        Description = description;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
 
     private ArrayList<String > listAddress;
 
@@ -25,6 +55,17 @@ public class Tour {
         ToTalTime = toTalTime;
         TimeStart = timeStart;
         Status = status;
+    }
+
+    public Tour(Integer id, Integer idIntructor, Integer price, Integer toTalTime, Date timeStart, Boolean status, String name, String description) {
+        Id = id;
+        IdIntructor = idIntructor;
+        Price = price;
+        ToTalTime = toTalTime;
+        TimeStart = timeStart;
+        Status = status;
+        Name = name;
+        Description = description;
     }
 
     public Tour(Integer id, Integer price, Integer toTalTime, Date timeStart, Boolean status) {

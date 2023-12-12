@@ -24,8 +24,9 @@
                         <img src="/Admin/asset/image/room1.30b5f04027f80ebe153b.jpg" />
                     </div>
                     <div class="top-right">
-                        <p style="font-size: 50px;font-weight: 600;font-family: 'Merriweather Sans', sans-serif;">TOUR 1</p>
+                        <p style="font-size: 20px;font-weight: 600;font-family: 'Merriweather Sans', sans-serif;"> <%=tour.getName()%></p>
                         <p>ID : <%= tour.getId() %></p>
+                        <blockquote> <%= tour.getDescription() %></blockquote>
                         <div class="price">
                             <p>Giá : <%= tour.getPrice() %> VNĐ</p>
                         </div>
@@ -41,6 +42,7 @@
                         <p style="font-weight: 600;"><%= tour.getToTalTime() %> ngày </p>
                     </div>
                 </div>
+
             </div>
             <div class="second-item">
                 <div class="instructor">

@@ -16,7 +16,7 @@
     <script src="/Admin/asset/js/formAdd.js"></script>
 </head>
 <body>
-<form action="../tour?action=addTour" method="post">
+<form action="../tour?action=addTour" method="post" onsubmit="return validateForm()">
 <section class="contain">
     <div class="divmain">
         <div class="address_ins">
@@ -43,7 +43,7 @@
                             ) {
                         %>
                             <tr class="tr1">
-                                <td style="width: 5%;"><input type="radio" name="IdInstructor" value="<%=instructor.getId()%>"/> </td>
+                                <td style="width: 5%;"><input type="radio" checked name="IdInstructor" value="<%=instructor.getId()%>"/> </td>
                                 <td><%=instructor.getId()%></td>
                                 <td><%=instructor.getName()%></td>
                                 <td><%=instructor.getPhone()%></td>
@@ -66,7 +66,7 @@
                     <table class="table-list">
                         <thead class="thead">
                         <tr>
-                            <th style="width: 5%;"></th>
+                            <th style="width: 5%;" ><input type="checkbox" id="selectAll"></th>
                             <th style="width: 5%;">ID</th>
                             <th>Address</th>
 
@@ -81,7 +81,7 @@
                             ) {
                         %>
                         <tr class="tr1">
-                            <td style="width: 5%;"><input type="checkbox" name="IdAddress" value="<%=address.getId()%>"/> </td>
+                            <td style="width: 5%;"><input type="checkbox" class="rowCheckbox"  name="IdAddress" value="<%=address.getId()%>"/> </td>
                             <td><%=address.getId()%></td>
                             <td><%=address.getAddressName()%></td>
                         </tr>
@@ -102,6 +102,10 @@
 
                 </div>
                 <div class="item-input" style="height: 80px;flex-direction: column;justify-content: space-around">
+                    <p>Tên tour</p>
+                    <input type="text" name="Name" value="----" placeholder="Name tour" >
+                </div>
+                <div class="item-input" style="height: 80px;flex-direction: column;justify-content: space-around">
                     <p>Chi phí tour</p>
                     <input type="number" name="Price" value="0"  placeholder="giá tour">
 
@@ -116,6 +120,21 @@
                     <p>Thời gian kết thúc</p>
                     <input class="endDate" type="date"  placeholder="thời gian khởi hành" value="" id="endDate" readonly>
                 </div>
+                <div class="item-input" style="height: 80px;flex-direction: column;justify-content: space-around" >
+                    <p> Mô tả </p>
+                    <input type="text" name="Description"   value="--" placeholder="mô tả" >
+                </div>
+                <%
+                    String error = (String )request.getAttribute("error");
+                    if (error ==null)
+                    {
+
+                    }
+                    else{
+                %>
+                <p><%=error%></p>
+                <%}%>
+
             <button type="submit" class="buttonAdd">Thêm Tour</button>
             </div>
         </div>
@@ -123,6 +142,16 @@
 
 </section>
 </form>
+<script>
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const rowCheckboxes = document.querySelectorAll('.rowCheckbox');
+    selectAllCheckbox.addEventListener('change', function() {
+        rowCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+    });
+
+</script>
 <script>
     var today = new Date();
     var formattedDate = today.toISOString().substr(0, 10);
@@ -150,6 +179,39 @@
             document.getElementById('endDate').value = formattedEndDate;
         }
     }
+</script>
+<script>
+    function validateForm() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"].rowCheckbox');
+        var checked = false;
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checked = true;
+            }
+        });
+        if (!checked) {
+            alert("Vui lòng chọn ít nhất một ô.");
+            return false;
+        }
+        return true;
+    }
+    document.addEventListener('change', function(event) {
+        if (event.target.matches('input[type="checkbox"].rowCheckbox')) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"].rowCheckbox');
+            var deleteButton = document.getElementById('deleteButton');
+            var checked = false;
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checked = true;
+                }
+            });
+            if (checked) {
+                deleteButton.disabled = false;
+            } else {
+                deleteButton.disabled = true;
+            }
+        }
+    });
 </script>
 </body>
 </html>

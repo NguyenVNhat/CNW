@@ -93,7 +93,7 @@
                 <input type="text" name="AddressName" placeholder="address" required>
                 <button type="submit">Thêm</button>
             </form>
-            <form action="../insaddress?action=deleteAddress" method="post">
+            <form action="../insaddress?action=deleteAddress" method="post" onsubmit="return validateForm()">
                 <table class="table-address">
                     <thead>
                     <tr>
@@ -117,7 +117,7 @@
                     <%}%>
                     </tbody>
                 </table>
-                <button type="submit">Xóa</button>
+                <button type="submit" id="deleteButton">Xóa</button>
             </form>
         </div>
         <div class="instructor">
@@ -174,6 +174,39 @@
         });
     });
 
+</script>
+<script>
+    function validateForm() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"].rowCheckbox');
+        var checked = false;
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checked = true;
+            }
+        });
+        if (!checked) {
+            alert("Vui lòng chọn ít nhất một ô.");
+            return false;
+        }
+        return true;
+    }
+    document.addEventListener('change', function(event) {
+        if (event.target.matches('input[type="checkbox"].rowCheckbox')) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"].rowCheckbox');
+            var deleteButton = document.getElementById('deleteButton');
+            var checked = false;
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checked = true;
+                }
+            });
+            if (checked) {
+                deleteButton.disabled = false;
+            } else {
+                deleteButton.disabled = true;
+            }
+        }
+    });
 </script>
 </body>
 </html>

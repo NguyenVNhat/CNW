@@ -108,55 +108,7 @@
             </div>
         </div>
         <div class="image-tour" style="width: 50%">
-            <button id="myBtn" type="button" style="width: 100px;height: 30px;border: none;background-color: lightgreen">Thêm</button>
 
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <form action="../traveltour?action=addTravelInTour" method="post" target="_self" onsubmit="return validateFormAdd()">
-                        <input type="hidden" name="IdTour" value="<%=tour.getIdTour()%>" />
-                        <table style="width: 100%">
-                            <thead class="head-address">
-                            <tr>
-                                <th><input type="checkbox" id="selectAllTraveler"></th>
-                                <th>Họ tên</th>
-                                <th>Địa chỉ</th>
-                                <th>Email</th>
-                                <th>SĐT</th>
-                            </tr>
-                            </thead>
-                            <tbody class="body-address">
-                            <%
-                                for (Traveler traveler: travelers
-                                ) {
-                                    Boolean key = true;
-                                    for (Traveler traveler1: tour.getListTraveler()
-                                    ) {
-                                        if (Objects.equals(traveler1.getId(), traveler.getId()))
-                                        {
-                                            key = false;
-                                            break;
-                                        }
-                                    }
-                                    if(key)
-                                    {
-                            %>
-                            <tr class="tr1">
-                                <td><input type="checkbox" name="IdTravel1" class="rowCheckboxTraveler" value="<%=traveler.getId()%>"></td>
-                                <td><%=traveler.getName()%></td>
-                                <td><%=traveler.getAddress()%></td>
-                                <td><%=traveler.getEmail()%></td>
-                                <td><%=traveler.getPhone()%></td>
-
-                            </tr>
-                            <%}} %>
-                            </tbody>
-                        </table>
-                        <button type="submit" style="width: 100px;height: 30px;border: none;background-color: lightgreen;margin-top: 20px" id="addButton">Thêm</button>
-                    </form>
-                </div>
-
-            </div>
             <form style="width: 100%;height: 100%" action="../traveltour?action=deleteTravelInTour" method="post" onsubmit="return validateForm()">
                 <input type="hidden" name="IdTour" value="<%=tour.getIdTour()%>" />
             <table style="width: 100%">

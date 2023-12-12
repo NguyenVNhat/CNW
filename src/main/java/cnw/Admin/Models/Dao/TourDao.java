@@ -79,25 +79,25 @@ public class TourDao {
         ArrayList<Tour> tours = new ArrayList<>();
         if(textsearch.equals("1"))
         {
-            query = "select tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status  from tour " +
+            query = "select tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status,tour.Name,tour.Description  from tour " +
                     "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
                     " where tour.TimeStart = NOW()";
         } else if (textsearch.equals("2")) {
-            query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status  FROM tour " +
+            query = "SELECT tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status,tour.Name,tour.Description  FROM tour " +
                     "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
                     "WHERE DATE(tour.TimeStart) = CURDATE() - INTERVAL 1 DAY";
         }else if (textsearch.equals("3")) {
-            query = "SELECT tour.Id, Instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status  \n" +
+            query = "SELECT tour.Id, Instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status,tour.Name,tour.Description  \n" +
                     "FROM tour \n" +
                     "JOIN Instructor ON tour.IdInstructor = Instructor.Id \n" +
                     "WHERE tour.TimeStart >= CURDATE() - INTERVAL 7 DAY \n" +
                     "AND tour.TimeStart <= CURDATE()";
         }else if (textsearch.equals("4")) {
-            query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status  FROM tour\n" +
+            query = "SELECT tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status,tour.Name,tour.Description  FROM tour\n" +
                     "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
                     "WHERE MONTH(tour.TimeStart) = MONTH(CURDATE()) AND YEAR(tour.TimeStart) = YEAR(CURDATE())";
         }else if (textsearch.equals("5")) {
-            query="SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status  FROM tour\n" +
+            query="SELECT tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status,tour.Name,tour.Description  FROM tour\n" +
                     "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
                     "WHERE \n" +
                     "    (YEAR(tour.TimeStart) = YEAR(CURDATE()) AND MONTH(tour.TimeStart) = MONTH(CURDATE()) - 1)\n" +
@@ -107,13 +107,15 @@ public class TourDao {
         ResultSet resultSet = statement.executeQuery(query);
         while (resultSet.next()) {
             Integer ID = resultSet.getInt("Id");
-            String Instructor = resultSet.getString("Name");
+            String Instructor = resultSet.getString("insname");
             Integer Price = resultSet.getInt("Price");
             Integer TotalTime = resultSet.getInt("TotalTime");
             Date TimeStart = resultSet.getDate("TimeStart");
             Boolean Status = resultSet.getBoolean("Status");
+            String Name = resultSet.getString("Name");
+            String description = resultSet.getString("Description");
 
-            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status,Name,description);
             tours.add(tour);
 
         }
@@ -123,26 +125,29 @@ public class TourDao {
         ArrayList<Tour> tours = new ArrayList<>();
         Connection connection = connector.connectDB();
             Statement statement = connection.createStatement();
-            String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
+            String query = "SELECT tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status,tour.Name,tour.Description " +
                     "FROM TOUR " +
                     "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
                     "WHERE tour.Id LIKE '%" + textsearch + "%' " +
                     "OR instructor.Name LIKE '%" + textsearch + "%' " +
                     "OR tour.Price LIKE '%" + textsearch + "%' " +
                     "OR tour.TotalTime LIKE '%" + textsearch + "%' " +
-                    "OR tour.TimeStart like '%"+textsearch+"%'";
+                    "OR tour.TimeStart like '%"+textsearch+"%'" +
+                    "OR tour.Name like '%"+textsearch+"%'";
 
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
                 Integer ID = resultSet.getInt("Id");
-                String Instructor = resultSet.getString("Name");
+                String Instructor = resultSet.getString("insname");
                 Integer Price = resultSet.getInt("Price");
                 Integer TotalTime = resultSet.getInt("TotalTime");
                 Date TimeStart = resultSet.getDate("TimeStart");
                 Boolean Status = resultSet.getBoolean("Status");
+                String Name = resultSet.getString("Name");
+                String description = resultSet.getString("Description");
 
-                Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+                Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status,Name,description);
                 tours.add(tour);
 
             }
@@ -151,7 +156,7 @@ public class TourDao {
     public Tour getDetailTour(Integer Id) throws SQLException, ClassNotFoundException {
         Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
-        String query = "select tour.Id , instructor.Name,tour.Price,tour.TotalTime,tour.TimeStart,tour.Status" +
+        String query = "select tour.Id , instructor.Name as insname,tour.Price,tour.TotalTime,tour.TimeStart,tour.Status,tour.Name,tour.Description" +
                 " from TOUR " +
                 "join Instructor ON Tour.IdInstructor = Instructor.Id\n" +
                 " WHERE tour.Id = '"+Id+"'";
@@ -159,20 +164,22 @@ public class TourDao {
         if (resultSet.next())
         {
              Integer ID = resultSet.getInt("Id");
-             String Instructor = resultSet.getString("Name");
+             String Instructor = resultSet.getString("insname");
              Integer Price =  resultSet.getInt("Price");
              Integer ToTalTime = resultSet.getInt("ToTalTime");
              Date TimeStart = resultSet.getDate("TimeStart");
              Boolean Status = resultSet.getBoolean("Status");
-             return new Tour(ID,Instructor,Price,ToTalTime,TimeStart,Status);
+            String Name = resultSet.getString("Name");
+            String description = resultSet.getString("Description");
+             return new Tour(ID,Instructor,Price,ToTalTime,TimeStart,Status,Name,description);
         }
         return new Tour(null,null,null,null,null);
     }
     public ArrayList<Tour> getAllTour() throws SQLException, ClassNotFoundException {
         Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
-        String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
-                "FROM TOUR " +
+        String query = "SELECT tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status ,tour.Name,tour.Description \n" +
+                "FROM TOUR \n" +
                 "JOIN Instructor ON Tour.IdInstructor = Instructor.Id";
 
         ResultSet resultSet = statement.executeQuery(query);
@@ -180,15 +187,17 @@ public class TourDao {
 
         while (resultSet.next()) {
             Integer ID = resultSet.getInt("Id");
-            String Instructor = resultSet.getString("Name");
+            String Instructor = resultSet.getString("insname");
 
 
             Integer Price = resultSet.getInt("Price");
             Integer TotalTime = resultSet.getInt("TotalTime");
             Date TimeStart = resultSet.getDate("TimeStart");
             Boolean Status = resultSet.getBoolean("Status");
+            String Name = resultSet.getString("Name");
+            String description = resultSet.getString("Description");
 
-            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status,Name,description);
             tours.add(tour);
 
         }
@@ -198,8 +207,8 @@ public class TourDao {
     public ArrayList<Tour> getUpTour() throws SQLException, ClassNotFoundException {
         Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
-        String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
-                "FROM TOUR " +
+        String query = "SELECT tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status,tour.Name,tour.Description \n" +
+                "FROM TOUR \n" +
                 "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
                 "WHERE tour.TimeStart > NOW()";
 
@@ -209,15 +218,17 @@ public class TourDao {
 
         while (resultSet.next()) {
             Integer ID = resultSet.getInt("Id");
-            String Instructor = resultSet.getString("Name");
+            String Instructor = resultSet.getString("insname");
 
 
             Integer Price = resultSet.getInt("Price");
             Integer TotalTime = resultSet.getInt("TotalTime");
             Date TimeStart = resultSet.getDate("TimeStart");
             Boolean Status = resultSet.getBoolean("Status");
+            String Name = resultSet.getString("Name");
+            String description = resultSet.getString("Description");
 
-            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status,Name,description);
             tours.add(tour);
 
         }
@@ -227,7 +238,7 @@ public class TourDao {
     public ArrayList<Tour> getDownTour() throws SQLException, ClassNotFoundException {
         Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
-        String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
+        String query = "SELECT tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status,tour.Name,tour.Description  " +
                 "FROM TOUR " +
                 "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
                 "WHERE DATE_ADD(tour.TimeStart, INTERVAL tour.TotalTime DAY) < NOW()";
@@ -238,15 +249,17 @@ public class TourDao {
 
         while (resultSet.next()) {
             Integer ID = resultSet.getInt("Id");
-            String Instructor = resultSet.getString("Name");
+            String Instructor = resultSet.getString("insname");
 
 
             Integer Price = resultSet.getInt("Price");
             Integer TotalTime = resultSet.getInt("TotalTime");
             Date TimeStart = resultSet.getDate("TimeStart");
             Boolean Status = resultSet.getBoolean("Status");
+            String Name = resultSet.getString("Name");
+            String description = resultSet.getString("Description");
 
-            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status,Name,description);
             tours.add(tour);
 
         }
@@ -256,7 +269,7 @@ public class TourDao {
     public ArrayList<Tour> getCurrentTour() throws SQLException, ClassNotFoundException {
         Connection connection = connector.connectDB();
         Statement statement = connection.createStatement();
-        String query = "SELECT tour.Id, instructor.Name, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status " +
+        String query = "SELECT tour.Id, instructor.Name as insname, tour.Price, tour.TotalTime, tour.TimeStart, tour.Status ,tour.Name,tour.Description" +
                 "FROM TOUR " +
                 "JOIN Instructor ON Tour.IdInstructor = Instructor.Id " +
                 "WHERE   tour.TimeStart <= NOW()" +
@@ -267,15 +280,15 @@ public class TourDao {
 
         while (resultSet.next()) {
             Integer ID = resultSet.getInt("Id");
-            String Instructor = resultSet.getString("Name");
-
-
+            String Instructor = resultSet.getString("insname");
             Integer Price = resultSet.getInt("Price");
             Integer TotalTime = resultSet.getInt("TotalTime");
             Date TimeStart = resultSet.getDate("TimeStart");
             Boolean Status = resultSet.getBoolean("Status");
+            String Name = resultSet.getString("Name");
+            String description = resultSet.getString("Description");
 
-            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status);
+            Tour tour = new Tour(ID, Instructor, Price, TotalTime, TimeStart, Status,Name,description);
             tours.add(tour);
 
         }
@@ -315,16 +328,26 @@ public class TourDao {
         {
             status = 1;
         }
-        String query = "INSERT INTO `tour`(`Id`,  `IdInstructor`, `Price`, `TotalTime`, `TimeStart`, `Status`) " +
-                "VALUES ('"+tour.getId()+"','"+tour.getIdIntructor()+"'," +
-                "'"+tour.getPrice()+"','"+tour.getToTalTime()+"','"+formattedDate+"'," +
-                "'"+status+"') ";
-        Integer result = statement.executeUpdate(query);
-        if (result >0)
+        String querycheck = "Select * from tour where Id = '"+tour.getId()+"'";
+        ResultSet resultSet = statement.executeQuery(querycheck);
+        if(resultSet.next())
         {
-            return  true;
+            return false;
         }
-        else return  false;
+        else{
+            String query = "INSERT INTO `tour`(`Id`,  `IdInstructor`, `Price`, `TotalTime`, `TimeStart`, `Status`,`Name`,`Description`) " +
+                    "VALUES ('"+tour.getId()+"','"+tour.getIdIntructor()+"'," +
+                    "'"+tour.getPrice()+"','"+tour.getToTalTime()+"','"+formattedDate+"'," +
+                    "'"+status+"','"+tour.getName()+"','"+tour.getDescription()+"') ";
+            Integer result = statement.executeUpdate(query);
+            if (result >0)
+            {
+                return  true;
+            }
+            else return  false;
+        }
+
+
     }
     public Boolean updateTour(Tour tour) throws SQLException, ClassNotFoundException {
         Connection connection = connector.connectDB();
@@ -342,7 +365,7 @@ public class TourDao {
         Statement statement = connection.createStatement();
         String query = "UPDATE `tour` SET `IdInstructor`='"+tour.getIdIntructor()+"'," +
                 "`Price`='"+tour.getPrice()+"',`TotalTime`='"+tour.getToTalTime()+"',`TimeStart`='"+formattedDate+"'," +
-                "`Status`='"+status+"' WHERE `Id`='"+tour.getId()+"'";
+                "`Status`='"+status+"',`Name` = '"+tour.getName()+"',`Description` = '"+tour.getDescription()+"' WHERE `Id`='"+tour.getId()+"'";
         Integer result = statement.executeUpdate(query);
         if (result >0)
         {

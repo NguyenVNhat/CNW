@@ -22,7 +22,7 @@
     ArrayList<Instructor> instructorALl  = (ArrayList<Instructor>)  request.getAttribute("instructorALl");
     ArrayList<Address> addressesAll  = (ArrayList<Address>)  request.getAttribute("addressesAll");
  %>
-<form action="../tour?action=updateTour" method="post">
+<form action="../tour?action=updateTour" method="post" onsubmit="return validateForm()">
     <section class="contain">
         <div class="divmain">
             <div class="address_ins">
@@ -117,7 +117,7 @@
                                     {
                             %>
                                     <tr class="tr1">
-                                        <td style="width: 5%;"><input type="checkbox" name="IdAddress" value="<%=address.getId()%>" checked /> </td>
+                                        <td style="width: 5%;"><input type="checkbox" class="rowCheckbox" name="IdAddress" value="<%=address.getId()%>" checked /> </td>
                                         <td><%=address.getId()%></td>
                                         <td><%=address.getAddressName()%></td>
                                     </tr>
@@ -126,7 +126,7 @@
                                     {
                             %>
                                     <tr class="tr1">
-                                        <td style="width: 5%;"><input type="checkbox" name="IdAddress" value="<%=address.getId()%>"  /> </td>
+                                        <td style="width: 5%;"><input type="checkbox" class="rowCheckbox" name="IdAddress" value="<%=address.getId()%>"  /> </td>
                                         <td><%=address.getId()%></td>
                                         <td><%=address.getAddressName()%></td>
                                     </tr>
@@ -148,6 +148,10 @@
 
                     </div>
                     <div class="item-input" style="height: 80px;flex-direction: column;justify-content: space-around">
+                        <p>Tên tour</p>
+                        <input type="text" name="Name" value="<%=tour.getName()%>" placeholder="Name tour" >
+                    </div>
+                    <div class="item-input" style="height: 80px;flex-direction: column;justify-content: space-around">
                         <p>Chi phí tour</p>
                         <input type="number" name="Price" value="<%=tour.getPrice()%>"  placeholder="giá tour">
 
@@ -162,7 +166,11 @@
                         <p>Thời gian kết thúc</p>
                         <input class="endDate" type="date"  placeholder="thời gian khởi hành" value="" id="endDate" readonly>
                     </div>
-                    <button type="submit" class="buttonAdd">Update Tour</button>
+                    <div class="item-input" style="height: 80px;flex-direction: column;justify-content: space-around" >
+                        <p> Mô tả </p>
+                        <input type="text" name="Description"   value="<%=tour.getDescription()%>" placeholder="mô tả" >
+                    </div>
+                    <button type="submit" class="buttonAdd" ID="deleteButton">Update Tour</button>
                 </div>
             </div>
         </div>
@@ -197,6 +205,41 @@
         }
     }
 </script>
+
+<script>
+    function validateForm() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"].rowCheckbox');
+        var checked = false;
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checked = true;
+            }
+        });
+        if (!checked) {
+            alert("Vui lòng chọn ít nhất một ô.");
+            return false;
+        }
+        return true;
+    }
+    document.addEventListener('change', function(event) {
+        if (event.target.matches('input[type="checkbox"].rowCheckbox')) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"].rowCheckbox');
+            var deleteButton = document.getElementById('deleteButton');
+            var checked = false;
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checked = true;
+                }
+            });
+            if (checked) {
+                deleteButton.disabled = false;
+            } else {
+                deleteButton.disabled = true;
+            }
+        }
+    });
+</script>
+
 </body>
 </html>
 
