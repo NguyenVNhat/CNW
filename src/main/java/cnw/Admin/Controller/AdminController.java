@@ -2,14 +2,14 @@ package cnw.Admin.Controller;
 
 import cnw.Admin.Models.Bean.Admin;
 import cnw.Admin.Models.Bo.AdminBo;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -45,11 +45,10 @@ public class AdminController extends HttpServlet {
                     System.out.println(2);
                     String error = "Đăng nhập thất bại";
                     req.setAttribute("Error",error);
-                    String destination = "/Admin/AdminLogin.jsp";
+                    String destination = "/Admin/login.jsp";
                     RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
                     rd.forward(req,resp);
                 }
-
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
