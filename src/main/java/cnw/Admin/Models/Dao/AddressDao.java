@@ -1,6 +1,7 @@
 package cnw.Admin.Models.Dao;
 
 import cnw.Admin.Models.Bean.Address;
+import cnw.utils.Connector;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

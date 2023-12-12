@@ -34,7 +34,7 @@ public class CheckAuthorizedYetFilter extends HttpFilter {
             // except login and register endpoint request redirect them to login page
             logger.info("not Authorized");
             logger.info(uri);
-            if (uri.contains("/register") || uri.contains("/login"))
+            if (uri.contains("/register") || uri.contains("/login") || uri.contains("/home"))
                 chain.doFilter(request, response);
             else
                 redirectToLogin(request, response);

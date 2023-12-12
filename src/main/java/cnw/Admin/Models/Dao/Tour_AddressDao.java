@@ -1,5 +1,7 @@
 package cnw.Admin.Models.Dao;
 
+import cnw.utils.Connector;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

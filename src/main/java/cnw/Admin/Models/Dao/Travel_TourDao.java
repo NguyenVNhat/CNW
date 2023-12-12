@@ -4,6 +4,7 @@ import cnw.Admin.Models.Bean.AdressDiagram;
 import cnw.Admin.Models.Bean.Tour;
 import cnw.Admin.Models.Bean.Travel_Tour;
 import cnw.Admin.Models.Bean.Traveler;
+import cnw.utils.Connector;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;

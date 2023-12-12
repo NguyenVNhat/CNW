@@ -1,6 +1,7 @@
 package cnw.Admin.Models.Dao;
 
 import cnw.Admin.Models.Bean.Tour;
+import cnw.utils.Connector;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;

@@ -58,7 +58,7 @@
         </ul><!-- End Profile Dropdown Items -->
       </li><!-- End Profile Nav -->
       <% } else { %>
-      <a class="btn btn-primary" href="/traveler/login" role="button">Đăng nhập</a>
+      <a class="btn btn-primary m-2" href="/traveler/login" role="button">Đăng nhập</a>
       <% } %>
     </ul>
   </nav><!-- End Icons Navigation -->

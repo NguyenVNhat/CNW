@@ -1,12 +1,12 @@
 package cnw.Traveler.Controller;
 
+import cnw.Admin.Models.Bean.Tour;
+import cnw.Admin.Models.Bo.TourBo;
 import cnw.Traveler.Exception.PasswordNotStrongEnough;
 import cnw.Traveler.Exception.TravelerCredentialNotCorrect;
 import cnw.Traveler.Exception.TravelerUsernameAlreadyExists;
 import cnw.Traveler.Model.Bo.TravelerBo;
-import cnw.Traveler.Model.dto.ChangePasswordDto;
-import cnw.Traveler.Model.dto.RegisterTravelerDto;
-import cnw.Traveler.Model.dto.UpdateTravelerProfileDto;
+import cnw.Traveler.Model.dto.*;
 import cnw.utils.servlet.FlashMap;
 import cnw.utils.servlet.FlashMapManager;
 import cnw.utils.viewdto.NotificationType;
@@ -22,9 +22,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.sql.SQLException;
+import java.util.*;
 import java.util.logging.Logger;
 
 @WebServlet(name = "TravelerController", urlPatterns = "/traveler/*")
@@ -32,6 +31,7 @@ import java.util.logging.Logger;
 public class TravelerController extends HttpServlet {
     Logger logger = Logger.getLogger(this.getClass().getName());
     TravelerBo travelerBo = new TravelerBo();
+    TourBo tourBo = new TourBo();
     FlashMapManager flashMapManager = new FlashMapManager();
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         FlashMap flashMap = flashMapManager.retrieveFlashMapFromSession(req);
@@ -67,6 +67,31 @@ public class TravelerController extends HttpServlet {
                     logger.info("get change password page");
                     req.getRequestDispatcher("/Traveler/change_password.jsp").forward(req, resp);
                 }
+                case "/traveler/home" -> {
+                    logger.info("get home page");
+                    List<Tour> tours = tourBo.getAllTour();
+                    int pageSize = 3;
+                    int page = req.getParameter("page") == null ? 1 : Integer.parseInt(req.getParameter("page"));
+                    int start = (page - 1) * pageSize;
+                    int end = page * pageSize;
+                    int totalPage = (int) Math.ceil((double) tours.size() / pageSize);
+                    List<Tour> toursPaging = tours.subList(start, Math.min(end, tours.size()));
+                    List<TourDto> tourDtos = toursPaging.stream().map(t -> {
+                        try {
+                            return new TourDto(tourBo.getListAddress(t.getId()), t);
+                        } catch (SQLException | ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }).toList();
+                    Pagable pagable = new Pagable();
+                    pagable.setPage(page);
+                    pagable.setSize(pageSize);
+                    pagable.setTotalPage(totalPage);
+                    pagable.setTotalItem(tours.size());
+                    pagable.setData(Collections.singletonList(tourDtos));
+                    req.setAttribute("pagable", pagable);
+                    req.getRequestDispatcher("/Traveler/home.jsp").forward(req, resp);
+                }
             }
         }
         catch (Exception e){
@@ -94,6 +119,7 @@ public class TravelerController extends HttpServlet {
                     travelerBo.updateTraveler(updateTravelerProfileDto);
                     SummaryProfile user = getCurrentUserProfile(req);
                     user.setAvatar(updateTravelerProfileDto.getFileName());
+                    user.setName(updateTravelerProfileDto.getName());
                     flashMap.addTargetRequestParams(String.valueOf(NotificationType.INFO),"Cập nhật thông tin thành công");
                     flashMapManager.saveFlashMapToSession(flashMap,req,resp);
                     redirectToUpdate(req,resp);
