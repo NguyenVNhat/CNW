@@ -92,6 +92,10 @@ public class TravelerController extends HttpServlet {
                     req.setAttribute("pagable", pagable);
                     req.getRequestDispatcher("/Traveler/home.jsp").forward(req, resp);
                 }
+                case "/traveler/tour" -> {
+                    logger.info("get tour page");
+                    req.getRequestDispatcher("/Traveler/tour.jsp").forward(req, resp);
+                }
             }
         }
         catch (Exception e){
