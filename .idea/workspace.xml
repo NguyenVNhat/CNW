@@ -10,21 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d6b8c53-7633-48bd-b804-94eab7b0d9a0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Traveler/Model/dto/Pagable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cnw/Traveler/Model/dto/TourDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/Traveler/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/AdminBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Bo/AdminBo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/AddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/AddressDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/AdminDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/Connector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/IntructorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/IntructorDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/TourDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/TourDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/Tour_AddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/Tour_AddressDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/Travel_TourDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Admin/Models/Dao/Travel_TourDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Traveler/Controller/TravelerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Traveler/Controller/TravelerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/Utils/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/Utils/Connector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cnw/utils/filter/auth/CheckAuthorizedYetFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cnw/utils/filter/auth/CheckAuthorizedYetFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +55,13 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -79,26 +73,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feat/merge__crud__customer__admin",
-    "last_opened_file_path": "C:/PBL4/ChatApplication-Copy",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/merge__crud__customer__admin&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/PBL4/ChatApplication-Copy&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Acer\Desktop\DocumentUni\CNW\BTN_CNW\src\main\java\cnw\Admin\Models\Bean" />
@@ -227,6 +221,11 @@
       <workItem from="1701872116658" duration="8572000" />
       <workItem from="1701884965802" duration="629000" />
       <workItem from="1701918661338" duration="813000" />
+      <workItem from="1702435005604" duration="22000" />
+      <workItem from="1702455698985" duration="51000" />
+      <workItem from="1702456287209" duration="3000" />
+      <workItem from="1702591919224" duration="2062000" />
+      <workItem from="1702605888766" duration="7510000" />
     </task>
     <task id="LOCAL-00001" summary="Setting pom.xml">
       <option name="closed" value="true" />
